@@ -1,8 +1,8 @@
 const API_KEY = import.meta.env.VITE_OPENWEATHER_API_KEY;
 const BASE_URL = `https://api.openweathermap.org/data/2.5/`;
 
-export const fetchWeatherData = async city => {
-    const url = `${BASE_URL}weather?q=${city}&appid=${API_KEY}`;
+export const fetchWeatherData = async (city, units = 'metric') => {
+    const url = `${BASE_URL}weather?q=${city}&units=${units}&appid=${API_KEY}`;
 
     try {
         const response = await fetch(url);
@@ -15,11 +15,11 @@ export const fetchWeatherData = async city => {
     } catch (error) {
         console.error("Fetch error:", error);
         throw error;
-    }
+    } 
 }
 
-export const fetchForecastData = async city => {
-    const url = `${BASE_URL}forecast?q=${city}&appid=${API_KEY}`;
+export const fetchForecastData = async (city, units = 'metric') => {
+    const url = `${BASE_URL}forecast?q=${city}&units=${units}&appid=${API_KEY}`;
 
     try {
         const response = await fetch(url);
