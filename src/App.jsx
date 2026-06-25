@@ -1,5 +1,7 @@
 import { useState } from "react"
 
+import WeatherCard from "./components/WeatherCard";
+
 import { fetchWeatherData, fetchForecastData } from "./services/weatherApi";
 
 function App() {
@@ -60,14 +62,8 @@ function App() {
 				<p>{error}</p>
 			}
 
-			{weatherData && 
-				<div>
-					<h1>{weatherData.name}, {weatherData.sys.country}</h1>
-					<p>{weatherData.weather[0].main}</p>
-					<p>{weatherData.weather[0].description}</p>
-					<p>{(weatherData.main.temp).toFixed()}°C</p>
-					<p>Humidity: {weatherData.main.humidity}%</p>
-				</div>
+			{weatherData &&
+				<WeatherCard weather={weatherData} />
 			}
 
 			{forecastData && (
