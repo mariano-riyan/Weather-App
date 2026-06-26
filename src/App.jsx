@@ -6,7 +6,7 @@ import { fetchWeatherData, fetchForecastData } from "./services/weatherApi";
 
 function App() {
 
-	const [city, setCity] = useState('');
+	const [city, setCity] = useState('Imus');
 	const [weatherData, setWeatherData] = useState(null);
 	const [forecastData, setForecastData] = useState(null);
 	const [isLoading, setIsLoading] = useState(false);
@@ -45,7 +45,7 @@ function App() {
 	}
 
 	return (
-		<>
+		<div className="p-4">
 			<input 
 				type="text"
 				value={city}
@@ -80,7 +80,7 @@ function App() {
 				</div>
 			)}
 			
-		</>
+		</div>
 	)
 }
 
