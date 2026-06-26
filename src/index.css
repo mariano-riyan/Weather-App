@@ -1,1 +1,14 @@
 @import "tailwindcss";
+
+@theme {
+  --font-primary: 'Montserrat';
+
+  --color-background: #0F172A;
+  --color-foreground: #94A3B8;
+}
+
+@layer base {
+  body {
+    @apply font-primary bg-background text-foreground;
+  }
+}
