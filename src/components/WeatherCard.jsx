@@ -3,7 +3,7 @@ import Card from "./ui/Card";
 function WeatherCard({ weather }) {
 
     const { icon, description } = weather.weather[0];
-    const iconUrl = `https://openweathermap.org/payload/api/media/file/${icon}.png`;
+    const iconUrl = `https://openweathermap.org/img/wn/${icon}@2x.png`;
 
     return ( 
         <div className="my-4 space-y-8">
@@ -19,7 +19,7 @@ function WeatherCard({ weather }) {
 
                     <div className="text-center space-y-1 md:text-start">
                         <p className="text-6xl">{weather.main.temp.toFixed()}°C</p>
-                        <p className="text-xs">Feels like {weather.main.temp.toFixed()}°C</p>
+                        <p className="text-xs">Feels like {weather.main.feels_like.toFixed()}°C</p>
                         <p>{weather.weather[0].description.toUpperCase()}</p>
                     </div>
                 </div>
