@@ -45,7 +45,7 @@ function App() {
 	}
 
 	return (
-		<div className="p-4">
+		<div className="p-4 md:p-8">
 			<input 
 				type="text"
 				value={city}
