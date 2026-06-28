@@ -1,14 +1,20 @@
 function SearchBar({ city, onCityChange, onSearch }) {
     return ( 
-        <div>
+        <form 
+            onSubmit={(e) => {
+                e.preventDefault();
+                onSearch();
+            }}
+        >
             <input 
                 type="text"
+                aria-label="City"
                 value={city}
                 onChange={onCityChange}
             />
 
-            <button onClick={onSearch}>search</button>
-        </div>
+            <button type="submit">Search</button>
+        </form>
     );
 }
 
