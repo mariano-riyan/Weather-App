@@ -1,12 +1,13 @@
 import { useState } from "react"
 
-import WeatherCard from "./components/WeatherCard";
-
 import { fetchWeatherData, fetchForecastData } from "./services/weatherApi";
+
+import WeatherCard from "./components/WeatherCard";
+import SearchBar from "./components/SearchBar";
 
 function App() {
 
-	const [city, setCity] = useState('Imus');
+	const [city, setCity] = useState('');
 	const [weatherData, setWeatherData] = useState(null);
 	const [forecastData, setForecastData] = useState(null);
 	const [isLoading, setIsLoading] = useState(false);
@@ -46,13 +47,8 @@ function App() {
 
 	return (
 		<div className="p-4 md:p-8">
-			<input 
-				type="text"
-				value={city}
-				onChange={handleInputChange}
-			/>
-
-			<button onClick={handleSearch}>search</button>
+			
+			<SearchBar city={city} onCityChange={handleInputChange} onSearch={handleSearch} />
 
 			{isLoading && 
 				<p>Loading...</p>
