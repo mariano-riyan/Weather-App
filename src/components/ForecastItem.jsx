@@ -1,6 +1,6 @@
 function ForecastItem({ forecast }) {
 
-    const date = forecast?.dt_txt ?? 'NO date';
+    const date = forecast?.dt_txt ?? 'No date';
     const temp = forecast?.main?.temp?.toFixed() ?? '';
     const feelsLike = forecast?.main?.feels_like?.toFixed() ?? '';
     const icon = forecast?.weather[0]?.icon;
