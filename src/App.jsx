@@ -4,6 +4,7 @@ import { fetchWeatherData, fetchForecastData } from "./services/weatherApi";
 
 import WeatherCard from "./components/WeatherCard";
 import SearchBar from "./components/SearchBar";
+import ForecastList from "./components/ForecastList";
 
 function App() {
 
@@ -63,17 +64,7 @@ function App() {
 			}
 
 			{forecastData && (
-				<div>
-					{forecastData.list.slice(0, 5).map(forecast => (
-						<div key={forecast.dt}>
-							<h1>{forecast.dt_txt}</h1>
-							<p>Temperature: {forecast.main.temp}°C</p>
-							<p>{forecast.main.humidity}%</p>
-							<p>{forecast.weather[0].main}</p>
-							<p>{forecast.weather[0].description}</p>
-						</div>
-					))}
-				</div>
+				<ForecastList forecasts={forecastData.list}/>
 			)}
 			
 		</div>
