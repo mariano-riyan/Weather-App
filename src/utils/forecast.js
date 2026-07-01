@@ -1,3 +1,12 @@
 export function getDailyForecasts(forecasts) {
-    return forecasts.filter(forecast => forecast.dt_txt.endsWith('12:00:00'));
+    const dates = new Set();
+    
+    return forecasts.filter(forecast => {
+        const date = forecast.dt_txt.split(' ')[0];
+
+        if (dates.has(date)) {
+            return;
+        }
+        return dates.add(date);
+    })
 }
