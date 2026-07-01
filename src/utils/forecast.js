@@ -10,3 +10,11 @@ export function getDailyForecasts(forecasts) {
         return dates.add(date);
     })
 }
+
+export function formatWeekday(date) {
+
+    const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+    const day = new Date(date).getDay();
+
+    return days[day];
+}
