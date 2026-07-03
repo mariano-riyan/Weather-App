@@ -13,7 +13,7 @@ const ForecastList = ({ forecasts }) => {
 
             <h5 className="text-xs font-bold p-4">WEEKLY OUTLOOK</h5>
 
-            <div className="flex overflow-x-auto scrollbar-none gap-4">
+            <div className="flex overflow-x-auto gap-4">
                 {dailyForecast
                     .map((forecast) => (
                             <ForecastItem 
