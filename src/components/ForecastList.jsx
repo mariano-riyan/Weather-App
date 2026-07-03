@@ -9,13 +9,20 @@ const ForecastList = ({ forecasts }) => {
     const dailyForecast = getDailyForecasts(forecasts);
 
     return (
-        <div className="flex overflow-scroll gap-4 my-8">
+        <div className="my-8">
 
-            {dailyForecast
-                .map((forecast) => (
-                        <ForecastItem key={forecast.dt} forecast={forecast}/>
-                )
-            )}
+            <h5 className="text-xs font-bold p-4">WEEKLY OUTLOOK</h5>
+
+            <div className="flex overflow-x-auto scrollbar-none gap-4">
+                {dailyForecast
+                    .map((forecast) => (
+                            <ForecastItem 
+                                key={forecast.dt} 
+                                forecast={forecast}
+                            />
+                    )
+                )}
+            </div>
         </div>
     );
 }
