@@ -2,6 +2,13 @@ import { Search } from "lucide-react";
 
 function SearchBar({ value, onCityChange, onSearch }) {
 
+    const handleKeyDown = (e) => {
+		if (e.key === 'Enter') {
+			console.log('Enter pressed.')
+			onSearch();
+		}
+	}
+
     return ( 
         <form 
             onSubmit={(e) => {
@@ -19,6 +26,7 @@ function SearchBar({ value, onCityChange, onSearch }) {
                     value={value}
                     onChange={onCityChange}
                     className="outline-none w-full"
+                    onKeyDown={handleKeyDown}
                 />
             </div>
         </form>
