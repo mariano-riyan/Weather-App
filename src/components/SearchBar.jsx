@@ -8,7 +8,6 @@ function SearchBar({ value, onCityChange, onSearch }) {
                 e.preventDefault();
                 onSearch();
             }}
-            className=""
         >
             <div className="rounded-full bg-foreground/50 p-2 flex place-self-center md:place-self-start group">
                 <Search className="inline-block mx-4" />
