@@ -5,6 +5,7 @@ import { fetchWeatherData, fetchForecastData } from "./services/weatherApi";
 import WeatherCard from "./components/WeatherCard";
 import SearchBar from "./components/SearchBar";
 import ForecastList from "./components/ForecastList";
+import SearchHistory from "./components/SearchHistory"
 
 function App() {
 
@@ -13,9 +14,20 @@ function App() {
 	const [forecastData, setForecastData] = useState(null);
 	const [isLoading, setIsLoading] = useState(false);
 	const [error, setError] = useState(null);
+	const [history, setHistory] = useState(JSON.parse(localStorage.getItem('history')) || []);
 
 	const handleInputChange = (e) => {
 		setCity(e.target.value);
+	}
+	
+	const writeHistory = () => {
+
+		const filteredHistory = history.filter(data => data !== city);
+		const newHistory = [city, ...filteredHistory];
+		const limitedHistory = newHistory.slice(0, 5);
+
+		setHistory([...limitedHistory]);
+		localStorage.setItem('history', JSON.stringify([...history]));
 	}
 
 	const handleSearch = async () => {
@@ -35,6 +47,7 @@ function App() {
 			
 			setWeatherData(weather);
 			setForecastData(forecast);
+			writeHistory()
 			setCity('')
 		} catch (error) {
 			setError(error.message);
@@ -50,6 +63,7 @@ function App() {
 		<div className="p-4 md:p-8">
 			
 			<SearchBar value={city} onCityChange={handleInputChange} onSearch={handleSearch} />
+			<SearchHistory history={history} /> 
 
 			{isLoading && 
 				<p>Loading...</p>
