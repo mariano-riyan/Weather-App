@@ -14,7 +14,13 @@ function App() {
 	const [forecastData, setForecastData] = useState(null);
 	const [isLoading, setIsLoading] = useState(false);
 	const [error, setError] = useState(null);
-	const [history, setHistory] = useState(JSON.parse(localStorage.getItem('history')) || []);
+	const [history, setHistory] = useState(() => {
+		try {
+			return JSON.parse(localStorage.getItem('history')) || []
+		} catch {
+			return [];
+		}
+	});
 
 	const handleInputChange = (e) => {
 		setCity(e.target.value);
@@ -22,12 +28,12 @@ function App() {
 	
 	const writeHistory = () => {
 
-		const filteredHistory = history.filter(data => data !== city);
-		const newHistory = [city, ...filteredHistory];
-		const limitedHistory = newHistory.slice(0, 5);
-
-		setHistory([...limitedHistory]);
-		localStorage.setItem('history', JSON.stringify([...history]));
+		setHistory(prevHistory => {
+			const filteredHistory = prevHistory.filter(data => data.toLowerCase() !== city.toLowerCase());
+			const limitedHistory = [city, ...filteredHistory].slice(0, 5);
+			localStorage.setItem('history', JSON.stringify([...limitedHistory]));
+			return limitedHistory;
+		});
 	}
 
 	const handleSearch = async () => {
