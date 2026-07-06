@@ -1,11 +1,10 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 
 import { fetchWeatherData, fetchForecastData } from "./services/weatherApi";
 
 import WeatherCard from "./components/WeatherCard";
 import SearchBar from "./components/SearchBar";
 import ForecastList from "./components/ForecastList";
-import SearchHistory from "./components/SearchHistory"
 
 function App() {
 
@@ -29,12 +28,15 @@ function App() {
 	const writeHistory = () => {
 
 		setHistory(prevHistory => {
-			const filteredHistory = prevHistory.filter(data => data.toLowerCase() !== city.toLowerCase());
+			const filteredHistory = prevHistory.filter(data => data.toLowerCase().trim() !== city.toLowerCase().trim());
 			const limitedHistory = [city, ...filteredHistory].slice(0, 5);
-			localStorage.setItem('history', JSON.stringify([...limitedHistory]));
 			return limitedHistory;
 		});
 	}
+
+	useEffect(() => {
+		localStorage.setItem('history', JSON.stringify(history));
+	}, [history]);
 
 	const handleSearch = async () => {
 		if (!city.trim()) {
@@ -68,8 +70,7 @@ function App() {
 	return (
 		<div className="p-4 md:p-8">
 			
-			<SearchBar value={city} onCityChange={handleInputChange} onSearch={handleSearch} />
-			<SearchHistory history={history} /> 
+			<SearchBar value={city} onCityChange={handleInputChange} onSearch={handleSearch} history={history} />
 
 			{isLoading && 
 				<p>Loading...</p>

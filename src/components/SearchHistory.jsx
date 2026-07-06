@@ -1,4 +1,5 @@
 const SearchHistory = ({ history }) => {
+
     return ( 
         <div className="">
             {history.map(city => (
