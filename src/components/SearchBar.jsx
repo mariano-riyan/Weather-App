@@ -25,6 +25,7 @@ function SearchBar({ value, onCityChange, onSearch, history }) {
                         value={value}
                         onChange={onCityChange}
                         onFocus={() => setShowHistory(true)}
+                        onBlur={() => setTimeout(() => setShowHistory(false), 150)}
                         className="outline-none w-full"
                     />
                     {showHistory && <button onClick={() => setShowHistory(false)}><X /></button>}
