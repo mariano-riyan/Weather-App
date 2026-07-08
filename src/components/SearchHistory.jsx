@@ -1,17 +1,16 @@
 const SearchHistory = ({ history }) => {
 
     return ( 
-        <form >
+        <div >
             {history.map(city => (
                 <button 
                     type="submit"
-                    key={history.indexOf(city)} 
-                    value={city}
+                    key={city} 
                     className="capitalize block">
                     {city}
                 </button>
             ))}
-        </form>
+        </div>
     );
 }
  

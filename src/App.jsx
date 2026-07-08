@@ -20,11 +20,6 @@ function App() {
 			return [];
 		}
 	});
-	const [showHistory, setShowHistory] = useState(false);
-
-	const historyToggle = () => {
-		setShowHistory(!showHistory);
-	}
 
 	const handleInputChange = (e) => {
 		setCity(e.target.value);
@@ -78,9 +73,7 @@ function App() {
 			<SearchBar 
 				value={city} 
 				onCityChange={handleInputChange} 
-				onSearch={handleSearch} 
-				history={history} 
-				onShowHistory={historyToggle} 
+				onSearch={handleSearch}  
 			/>
 
 			{isLoading && 
