@@ -20,6 +20,11 @@ function App() {
 			return [];
 		}
 	});
+	const [showHistory, setShowHistory] = useState(false);
+
+	const historyToggle = () => {
+		setShowHistory(!showHistory);
+	}
 
 	const handleInputChange = (e) => {
 		setCity(e.target.value);
@@ -70,7 +75,13 @@ function App() {
 	return (
 		<div className="p-4 md:p-8">
 			
-			<SearchBar value={city} onCityChange={handleInputChange} onSearch={handleSearch} history={history} />
+			<SearchBar 
+				value={city} 
+				onCityChange={handleInputChange} 
+				onSearch={handleSearch} 
+				history={history} 
+				onShowHistory={historyToggle} 
+			/>
 
 			{isLoading && 
 				<p>Loading...</p>

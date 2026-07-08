@@ -1,13 +1,10 @@
+import { Search, X } from "lucide-react";
 import { useState } from "react";
 
-import SearchHistory from "./SearchHistory";
+function SearchBar({ value, onCityChange, onSearch, onShowHistory }) {
 
-import { Search, X } from "lucide-react";
-
-function SearchBar({ value, onCityChange, onSearch, history }) {
-
-    const [showHistory, setShowHistory] = useState(false);
-
+    const [showX, setShowX] = useState('opacity-0');
+    
     return ( 
         <div>
             <form 
@@ -24,15 +21,14 @@ function SearchBar({ value, onCityChange, onSearch, history }) {
                         aria-label="City"
                         value={value}
                         onChange={onCityChange}
-                        onFocus={() => setShowHistory(true)}
-                        onBlur={() => setTimeout(() => setShowHistory(false), 150)}
+                        onFocus={onShowHistory, () => {setShowX('opacity-100')}}
+                        onBlur={onShowHistory, () => {setShowX('opacity-0')}}
                         className="outline-none w-full"
                     />
-                    {showHistory && <button onClick={() => setShowHistory(false)}><X /></button>}
+                    
+                    <X id="btn" className={showX} onClick={(() => {setShowX('opacity-0')})}/>
                 </div>
             </form>
-
-            {showHistory && <SearchHistory history={history} /> }
         </div>
     );
 }
