@@ -70,7 +70,11 @@ function App() {
 	return (
 		<div className="p-4 md:p-8">
 			
-			<SearchBar value={city} onCityChange={handleInputChange} onSearch={handleSearch} history={history} />
+			<SearchBar 
+				value={city} 
+				onCityChange={handleInputChange} 
+				onSearch={handleSearch}  
+			/>
 
 			{isLoading && 
 				<p>Loading...</p>

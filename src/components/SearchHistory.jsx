@@ -1,11 +1,14 @@
 const SearchHistory = ({ history }) => {
 
     return ( 
-        <div className="">
+        <div >
             {history.map(city => (
-                <div key={history.indexOf(city)} className="capitalize">
+                <button 
+                    type="submit"
+                    key={city} 
+                    className="capitalize block">
                     {city}
-                </div>
+                </button>
             ))}
         </div>
     );
