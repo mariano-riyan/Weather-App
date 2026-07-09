@@ -1,11 +1,13 @@
-const SearchHistory = ({ history }) => {
+const SearchHistory = ({ history, onCityClick, visibility }) => {
 
     return ( 
-        <div >
+        <div className={`${visibility} absolute`}>
             {history.map(city => (
                 <button 
                     type="submit"
                     key={city} 
+                    value={city}
+                    onClick={onCityClick}
                     className="capitalize block">
                     {city}
                 </button>

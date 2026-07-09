@@ -34,6 +34,10 @@ function App() {
 		});
 	}
 
+	const handleX = () => {
+		setCity('');
+	}
+
 	useEffect(() => {
 		localStorage.setItem('history', JSON.stringify(history));
 	}, [history]);
@@ -55,8 +59,8 @@ function App() {
 			
 			setWeatherData(weather);
 			setForecastData(forecast);
-			writeHistory()
 			setCity('')
+			writeHistory()
 		} catch (error) {
 			setError(error.message);
 			setWeatherData(null);
@@ -73,7 +77,9 @@ function App() {
 			<SearchBar 
 				value={city} 
 				onCityChange={handleInputChange} 
-				onSearch={handleSearch}  
+				onSearch={handleSearch}
+				history={history}
+				onXClick={handleX}
 			/>
 
 			{isLoading && 

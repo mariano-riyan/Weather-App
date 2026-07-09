@@ -1,7 +1,10 @@
-import { Search, X } from "lucide-react";
 import { useState } from "react";
 
-function SearchBar({ value, onCityChange, onSearch }) {
+import { Search, X } from "lucide-react";
+
+import SearchHistory from "./SearchHistory";
+
+function SearchBar({ value, onCityChange, onSearch, history, onXClick }) {
 
     const [showX, setShowX] = useState('opacity-0');
     
@@ -20,14 +23,21 @@ function SearchBar({ value, onCityChange, onSearch }) {
                         placeholder="Search City..."
                         aria-label="City"
                         value={value}
+                        style={{ textTransform: 'capitalize' }}
                         onChange={onCityChange}
                         onFocus={() => {setShowX('opacity-100 cursor-pointer')}}
                         onBlur={() => {setShowX('opacity-0 cursor-default')}}
                         className="outline-none w-full"
                     />
                     
-                    <X id="btn" className={`${showX}`} onClick={(() => {setShowX('opacity-0 cursor-default')})}/>
+                    <X  className={`${showX}`} 
+                        onClick={() => {
+                            onXClick();
+                            setShowX('opacity-0 cursor-default')
+                        }}
+                    />
                 </div>
+                <SearchHistory history={history} onCityClick={onCityChange} visibility={showX}/>
             </form>
         </div>
     );
