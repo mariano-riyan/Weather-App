@@ -25,11 +25,11 @@ function App() {
 		setCity(e.target.value);
 	}
 	
-	const writeHistory = () => {
+	const writeHistory = (cityToWrite) => {
 
 		setHistory(prevHistory => {
-			const filteredHistory = prevHistory.filter(data => data.toLowerCase().trim() !== city.toLowerCase().trim());
-			const limitedHistory = [city, ...filteredHistory].slice(0, 5);
+			const filteredHistory = prevHistory.filter(data => data.toLowerCase().trim() !== cityToWrite.toLowerCase().trim());
+			const limitedHistory = [cityToWrite, ...filteredHistory].slice(0, 5);
 			return limitedHistory;
 		});
 	}
@@ -42,8 +42,9 @@ function App() {
 		localStorage.setItem('history', JSON.stringify(history));
 	}, [history]);
 
-	const handleSearch = async () => {
-		if (!city.trim()) {
+	const handleSearch = async (searchCity) => {
+		const cityToSearch = searchCity ?? city;
+		if (!cityToSearch.trim()) {
 			setError("Please Enter a City");
 			return;
 		}
@@ -53,14 +54,14 @@ function App() {
 
 		try {
 			const [weather, forecast] = await Promise.all([
-				fetchWeatherData(city),
-				fetchForecastData(city)
+				fetchWeatherData(cityToSearch),
+				fetchForecastData(cityToSearch)
 			]);
 			
 			setWeatherData(weather);
 			setForecastData(forecast);
 			setCity('')
-			writeHistory()
+			writeHistory(cityToSearch)
 		} catch (error) {
 			setError(error.message);
 			setWeatherData(null);

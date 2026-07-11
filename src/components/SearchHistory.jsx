@@ -4,7 +4,7 @@ const SearchHistory = ({ history, onCityClick, visibility }) => {
         <div className={`${visibility} absolute`}>
             {history.map(city => (
                 <button 
-                    type="submit"
+                    type="button"
                     key={city} 
                     value={city}
                     onClick={onCityClick}
