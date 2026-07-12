@@ -2,8 +2,8 @@ const API_KEY = import.meta.env.VITE_OPENWEATHER_API_KEY;
 const RAW_BASE_URL = import.meta.env.VITE_OPENWEATHER_BASE_URL;
 const BASE_URL = RAW_BASE_URL?.endsWith('/') ? RAW_BASE_URL : `${RAW_BASE_URL}/`;
 
-export const fetchWeatherData = async (city, units = 'metric') => {
-    const url = `${BASE_URL}weather?q=${city}&units=${units}&appid=${API_KEY}`;
+export const fetchWeatherData = async (city, unit) => {
+    const url = `${BASE_URL}weather?q=${city}&units=${unit}&appid=${API_KEY}`;
 
     try {
         const response = await fetch(url);
@@ -19,8 +19,8 @@ export const fetchWeatherData = async (city, units = 'metric') => {
     } 
 }
 
-export const fetchForecastData = async (city, units = 'metric') => {
-    const url = `${BASE_URL}forecast?q=${city}&units=${units}&appid=${API_KEY}`;
+export const fetchForecastData = async (city, unit) => {
+    const url = `${BASE_URL}forecast?q=${city}&units=${unit}&appid=${API_KEY}`;
 
     try {
         const response = await fetch(url);

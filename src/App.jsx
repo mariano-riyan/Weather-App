@@ -5,6 +5,8 @@ import { fetchWeatherData, fetchForecastData } from "./services/weatherApi";
 import WeatherCard from "./components/WeatherCard";
 import SearchBar from "./components/SearchBar";
 import ForecastList from "./components/ForecastList";
+import UnitToggle from "./components/UnitToggle";
+import { useWeather } from "./context/WeatherContext";
 
 function App() {
 
@@ -20,6 +22,17 @@ function App() {
 			return [];
 		}
 	});
+	const [lastSearchedCity, setLastSearchedCity] = useState(null);
+	
+	const { unit, toggleUnit } = useWeather();
+
+	const handleUnit = () => {
+		const newUnit = unit === 'metric' ? 'imperial' : 'metric';
+		toggleUnit(newUnit);
+		if (weatherData) {
+			handleSearch(lastSearchedCity, newUnit);
+		}
+	}
 
 	const handleInputChange = (e) => {
 		setCity(e.target.value);
@@ -42,7 +55,7 @@ function App() {
 		localStorage.setItem('history', JSON.stringify(history));
 	}, [history]);
 
-	const handleSearch = async (searchCity) => {
+	const handleSearch = async (searchCity, overrideUnit) => {
 		const cityToSearch = searchCity ?? city;
 		if (!cityToSearch.trim()) {
 			setError("Please Enter a City");
@@ -54,13 +67,14 @@ function App() {
 
 		try {
 			const [weather, forecast] = await Promise.all([
-				fetchWeatherData(cityToSearch),
-				fetchForecastData(cityToSearch)
+				fetchWeatherData(cityToSearch, overrideUnit),
+				fetchForecastData(cityToSearch, overrideUnit)
 			]);
 			
 			setWeatherData(weather);
 			setForecastData(forecast);
-			setCity('')
+			setLastSearchedCity(cityToSearch);
+			setCity('');
 			writeHistory(cityToSearch)
 		} catch (error) {
 			setError(error.message);
@@ -75,6 +89,10 @@ function App() {
 	return (
 		<div className="p-4 md:p-8">
 			
+			<UnitToggle 
+				onToggle={handleUnit}
+			/>
+
 			<SearchBar 
 				value={city} 
 				onCityChange={handleInputChange} 
@@ -92,7 +110,7 @@ function App() {
 			}
 
 			{weatherData &&
-				<WeatherCard weather={weatherData} />
+				<WeatherCard weather={weatherData} tempUnit={unit} />
 			}
 
 			{forecastData && (
