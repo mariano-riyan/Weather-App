@@ -30,7 +30,9 @@ function App() {
 		const newUnit = unit === 'metric' ? 'imperial' : 'metric';
 		toggleUnit(newUnit);
 		if (weatherData) {
-			handleSearch(lastSearchedCity, newUnit);
+			handleSearch(lastSearchedCity, newUnit).catch(() => {
+				toggleUnit(unit)
+			});
 		}
 	}
 
@@ -62,13 +64,15 @@ function App() {
 			return;
 		}
 
+		const effectiveUnit = overrideUnit ?? unit;
+
 		setIsLoading(true);
 		setError(null);
 
 		try {
 			const [weather, forecast] = await Promise.all([
-				fetchWeatherData(cityToSearch, overrideUnit),
-				fetchForecastData(cityToSearch, overrideUnit)
+				fetchWeatherData(cityToSearch, effectiveUnit),
+				fetchForecastData(cityToSearch, effectiveUnit)
 			]);
 			
 			setWeatherData(weather);
@@ -91,6 +95,7 @@ function App() {
 			
 			<UnitToggle 
 				onToggle={handleUnit}
+				activeUnit={unit}
 			/>
 
 			<SearchBar 

@@ -1,20 +1,19 @@
-const UnitToggle = ({ onToggle }) => {
-    
+const UnitToggle = ({ onToggle, activeUnit }) => {
     return (
-        <div 
-            className="p-1 rounded-full flex gap-4"
-            onClick={ onToggle }
+        <button
+            className="p-1 rounded-full flex gap-4 cursor-pointer"
+            onClick={onToggle}
+            aria-label="Toggle temperature unit"
         >
-            <div className="">
+            <div className={activeUnit === 'metric' ? 'font-bold' : ''}>
                 °C
             </div>
 
-            <div
-                className="">
+            <div className={activeUnit === 'imperial' ? 'font-bold' : ''}>
                 °F
             </div>
-        </div>
+        </button>
     );
 }
- 
+
 export default UnitToggle;

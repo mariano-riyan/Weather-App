@@ -28,7 +28,7 @@ function WeatherCard({ weather, tempUnit }) {
 
                     <div className="text-center space-y-1 md:text-start">
                         <p className="text-7xl">{temp.toFixed()}°{unit}</p>
-                        <p className="text-sm">Feels like {feelsLike.toFixed()}°C</p>
+                        <p className="text-sm">Feels like {feelsLike.toFixed()}°{unit}</p>
                         <p className="text-lg capitalize">{description}</p>
                     </div>
                 </div>
