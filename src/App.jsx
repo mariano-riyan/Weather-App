@@ -7,6 +7,7 @@ import SearchBar from "./components/SearchBar";
 import ForecastList from "./components/ForecastList";
 import UnitToggle from "./components/UnitToggle";
 import { useWeather } from "./context/WeatherContext";
+import LandingPage from "./components/LandingPage";
 
 function App() {
 
@@ -92,19 +93,32 @@ function App() {
 
 	return (
 		<div className="p-4 md:p-8">
+
 			
 			<UnitToggle 
 				onToggle={handleUnit}
 				activeUnit={unit}
 			/>
 
-			<SearchBar 
-				value={city} 
-				onCityChange={handleInputChange} 
-				onSearch={handleSearch}
-				history={history}
-				onXClick={handleX}
-			/>
+			{!weatherData &&
+				<LandingPage 
+					value={city} 
+					onCityChange={handleInputChange} 
+					onSearch={handleSearch}
+					history={history}
+					onXClick={handleX}
+				/>
+			}
+
+			{weatherData && 
+				<SearchBar 
+					value={city} 
+					onCityChange={handleInputChange} 
+					onSearch={handleSearch}
+					history={history}
+					onXClick={handleX}
+				/>
+			}
 
 			{isLoading && 
 				<p>Loading...</p>
