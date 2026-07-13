@@ -1,7 +1,8 @@
 import Card from "./ui/Card";
 
-function WeatherCard({ weather }) {
+function WeatherCard({ weather, tempUnit }) {
 
+    const unit = tempUnit === 'imperial' ? 'F' : 'C';
     const name = weather?.name ?? '';
     const country = weather?.sys?.country ?? '';
     const speed = weather?.wind?.speed;
@@ -26,8 +27,8 @@ function WeatherCard({ weather }) {
                     />
 
                     <div className="text-center space-y-1 md:text-start">
-                        <p className="text-7xl">{temp.toFixed()}°C</p>
-                        <p className="text-sm">Feels like {feelsLike.toFixed()}°C</p>
+                        <p className="text-7xl">{temp.toFixed()}°{unit}</p>
+                        <p className="text-sm">Feels like {feelsLike.toFixed()}°{unit}</p>
                         <p className="text-lg capitalize">{description}</p>
                     </div>
                 </div>
