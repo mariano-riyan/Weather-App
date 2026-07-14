@@ -1,5 +1,3 @@
-import Card from "./ui/Card";
-
 function WeatherCard({ weather, tempUnit }) {
 
     const unit = tempUnit === 'imperial' ? 'F' : 'C';
@@ -35,16 +33,7 @@ function WeatherCard({ weather, tempUnit }) {
             </div>
 
             <div className="grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-4">
-                <Card 
-                    name="HUMIDITY" 
-                    value={humidity} 
-                    unit='%'
-                />
-                <Card 
-                    name="WIND SPEED" 
-                    value={(speed * 3.6).toFixed(1)} 
-                    unit='km/h' 
-                />
+
             </div>
         </div>
     );

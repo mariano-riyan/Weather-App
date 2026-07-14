@@ -1,0 +1,22 @@
+{
+    "Features": [
+        {
+            "id": 1,
+            "name": "Real-time Data",
+            "desc": "Integration with OpenWeatherMap API.",
+            "icon": "clock"
+        },
+        {
+            "id": 2,
+            "name": "Search",
+            "desc": "Find weather for any city globally.",
+            "icon": "search"
+        },
+        {
+            "id": 3,
+            "name": "Unit Toggle",
+            "desc": "Seamless switching between Metric (°C) and Imperial (°F).",
+            "icon": "unit"
+        }
+    ]
+}
