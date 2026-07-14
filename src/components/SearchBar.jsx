@@ -9,15 +9,7 @@ import { Button } from "./ui/button"
 
 function SearchBar({ value, onCityChange, onSearch, history }) {
 
-    const [showX, setShowX] = useState('opacity-0');
-
-    const handleEnter = (e) => {
-        if (e.key === 'Enter') {
-            onSearch();
-            e.target.blur();
-            setShowX('opacity-0 cursor-default');
-        }
-    }
+    const [showHistory, setShowHistory] = useState('opacity-0');
 
     const handleHistoryClick = (e) => {
         onCityChange(e);
@@ -29,7 +21,9 @@ function SearchBar({ value, onCityChange, onSearch, history }) {
             onSubmit={(e) => {
                 e.preventDefault();
                 onSearch();
+                document.activeElement?.blur();
             }}
+            autoComplete="off"
             className="place-items-center"
         >
             <div>
@@ -41,9 +35,8 @@ function SearchBar({ value, onCityChange, onSearch, history }) {
                         value={value}
                         style={{ textTransform: 'capitalize' }}
                         onChange={onCityChange}
-                        onFocus={() => {setShowX('opacity-100 cursor-pointer')}}
-                        onBlur={() => {setShowX('opacity-0 cursor-default')}}
-                        onKeyDown={handleEnter}
+                        onFocus={() => {setShowHistory('opacity-100 cursor-pointer')}}
+                        onBlur={() => {setShowHistory('opacity-0 cursor-default')}}
                         className="p-4 md:text-md lg:text-lg xl:text-xl"
                     />
 
@@ -55,7 +48,7 @@ function SearchBar({ value, onCityChange, onSearch, history }) {
                     </Button>
                 </ButtonGroup>
 
-                <SearchHistory history={history} onCityClick={handleHistoryClick} visibility={showX}/>
+                <SearchHistory history={history} onCityClick={handleHistoryClick} visibility={showHistory}/>
             </div>
 
 
