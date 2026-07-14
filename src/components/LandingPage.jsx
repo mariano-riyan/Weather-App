@@ -6,6 +6,8 @@ import {
     CardTitle,
 } from "./ui/card"
 
+import SplitText from "./SplitText";
+
 import { getFeaturesData } from '../services/featuresService';
 import { ClockCheck, MapPinSearch, Thermometer } from 'lucide-react';
 
@@ -21,12 +23,17 @@ const LandingPage = ({ value, onCityChange, onSearch, history, onXClick }) => {
 
     return (
         <div className='space-y-8'>
-            <div className='space-y-2 text-center mt-16'>
-                <h1 className='text-6xl font-bold'>Weather</h1>
-                <p className='text-sm'>Beautifully minimal weather data, engineered for the modern web.</p>
+            <div className='space-y-4 text-center mt-16'>
+                <SplitText
+                    text="XWeather"
+                    className="text-6xl font-semibold text-center"
+                    delay={60}
+                    duration={1}
+                />
+                <p className='text-sm tracking-wider'>Beautifully minimal weather data, engineered for the modern web.</p>
             </div>
 
-            <div className=''>
+            <div className='mb-24'>
                 <SearchBar 
                     value={value}
                     onCityChange={onCityChange}
