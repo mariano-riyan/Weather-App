@@ -9,7 +9,7 @@ import {
 import { getFeaturesData } from '../services/featuresService';
 import { ClockCheck, MapPinSearch, Thermometer } from 'lucide-react';
 
-const LandingPage = ({ value, onCityChange, onSearch, history, onXClick }) => {
+const LandingPage = ({ value, onCityChange, onSearch, history, onClear }) => {
 
     const features = getFeaturesData().Features;
 
@@ -32,7 +32,7 @@ const LandingPage = ({ value, onCityChange, onSearch, history, onXClick }) => {
                     onCityChange={onCityChange}
                     onSearch={onSearch}
                     history={history}
-                    onXClick={onXClick}
+                    onClear={onClear}
                 />
             </div>
 

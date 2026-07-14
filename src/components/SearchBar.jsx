@@ -1,13 +1,16 @@
 import { useState } from "react";
 
-import { Search } from "lucide-react";
+import { Search, X } from "lucide-react";
 
 import SearchHistory from "./SearchHistory";
-import { Input } from "./ui/input";
-import { ButtonGroup } from "./ui/button-group";
-import { Button } from "./ui/button"
+import { Field } from "./ui/field"
+import {
+    InputGroup,
+    InputGroupAddon,
+    InputGroupInput,
+} from "./ui/input-group"
 
-function SearchBar({ value, onCityChange, onSearch, history }) {
+function SearchBar({ value, onCityChange, onSearch, history, onClear }) {
 
     const [showHistory, setShowHistory] = useState('opacity-0');
 
@@ -17,41 +20,51 @@ function SearchBar({ value, onCityChange, onSearch, history }) {
     }
     
     return ( 
-        <form 
+        <form   
             onSubmit={(e) => {
                 e.preventDefault();
                 onSearch();
                 document.activeElement?.blur();
             }}
-            autoComplete="off"
-            className="place-items-center"
+            className="max-w-sm mx-auto h-auto"
         >
-            <div>
-                <ButtonGroup>
-                    <Input 
-                        type="text"
-                        placeholder="Search City..."
+            <Field>
+                <InputGroup className="h-9">
+                    <InputGroupInput 
+                        placeholder="Search city..."
+                        autoComplete="off"
                         aria-label="City"
                         value={value}
                         style={{ textTransform: 'capitalize' }}
                         onChange={onCityChange}
                         onFocus={() => {setShowHistory('opacity-100 cursor-pointer')}}
                         onBlur={() => {setShowHistory('opacity-0 cursor-default')}}
-                        className="p-4 md:text-md lg:text-lg xl:text-xl"
+                        className="md:text-md tracking-wide"
                     />
-
-                    <Button
-                        type="submit"
-                        className="p-4"
-                    >
+                    <InputGroupAddon>
                         <Search />
-                    </Button>
-                </ButtonGroup>
+                    </InputGroupAddon>
+                    <InputGroupAddon align="inline-end">
+                        <button
+                            type="button"
+                            aria-label="Clear City"
+                            className={`${showHistory} mx-1`}
+                            onClick={() => {
+                                onClear();
+                                setShowHistory('opacity-0 cursor-default')
+                            }}
+                        >
+                            <X size={20}/>
+                        </button>
+                    </InputGroupAddon>
+                </InputGroup>
+            </Field>
 
-                <SearchHistory history={history} onCityClick={handleHistoryClick} visibility={showHistory}/>
-            </div>
-
-
+            <SearchHistory 
+                history={history} 
+                onCityClick={handleHistoryClick} 
+                visibility={showHistory}
+            />
         </form>
     );
 }
