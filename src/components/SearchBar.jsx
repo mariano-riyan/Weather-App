@@ -44,19 +44,21 @@ function SearchBar({ value, onCityChange, onSearch, history, onClear }) {
                     <InputGroupAddon>
                         <Search />
                     </InputGroupAddon>
-                    <InputGroupAddon align="inline-end">
-                        <button
-                            type="button"
-                            aria-label="Clear City"
-                            className={`${showHistory} mx-1`}
-                            onClick={() => {
-                                onClear();
-                                setShowHistory('opacity-0 cursor-default')
-                            }}
-                        >
-                            <X size={20}/>
-                        </button>
-                    </InputGroupAddon>
+                    {value && 
+                        <InputGroupAddon align="inline-end">
+                            <button
+                                type="button"
+                                aria-label="Clear City"
+                                className="mx-1 text-muted-foreground hover:text-foreground"
+                                onClick={() => {
+                                    onClear();
+                                    setShowHistory('opacity-0 cursor-default')
+                                }}
+                            >
+                                <X size={20}/>
+                            </button>
+                        </InputGroupAddon>
+                    }
                 </InputGroup>
             </Field>
 
