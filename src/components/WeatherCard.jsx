@@ -6,12 +6,10 @@ function WeatherCard({ weather, tempUnit }) {
     const windUnit = tempUnit === 'imperial' ? 'mph' : 'm/s';
     const name = weather?.name ?? '';
     const country = weather?.sys?.country ?? '';
-    const speed = weather?.wind?.speed;
     const icon = weather?.weather?.[0]?.icon;
     const description = weather?.weather?.[0]?.description ?? '';
     const temp = weather?.main?.temp;
     const feelsLike = weather?.main?.feels_like;
-    const humidity = weather?.main?.humidity;
 
     const iconUrl = `https://openweathermap.org/img/wn/${icon}@2x.png`;
 
@@ -36,8 +34,7 @@ function WeatherCard({ weather, tempUnit }) {
             </div>
 
             <WeatherElements 
-                speed={speed}
-                humidity={humidity}
+                weather={weather}
                 unit={windUnit}
             />
         </div>
