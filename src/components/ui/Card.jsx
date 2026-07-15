@@ -41,7 +41,7 @@ function CardTitle({
   return (
     <div
       data-slot="card-title"
-      className={cn("text-base font-medium", className)}
+      className={cn("text-sm font-medium", className)}
       {...props} />
   );
 }
@@ -53,7 +53,7 @@ function CardDescription({
   return (
     <div
       data-slot="card-description"
-      className={cn("text-sm text-muted-foreground", className)}
+      className={cn("text-muted-foreground", className)}
       {...props} />
   );
 }
