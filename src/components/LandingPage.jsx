@@ -4,7 +4,7 @@ import {
     CardDescription,
     CardHeader,
     CardTitle,
-} from "./ui/card";
+} from "./ui/Card";
 
 import { getFeaturesData } from '../services/featuresService';
 import { ClockCheck, MapPinSearch, Thermometer } from 'lucide-react';
@@ -34,22 +34,20 @@ const LandingPage = ({ value, onCityChange, onSearch, history, onClear }) => {
                 />
             </div>
 
-            <div className="grid md:grid-cols-3 gap-4">
+            <div className="grid md:grid-cols-3 gap-8">
                 {features.map(feature => {
                     const Icon = icons[feature.icon];
 
                     return (
-                        <div  key={feature.id} className=''>
-                            <Card className="h-full p-10 md:p-6 lg:p-10 space-y-4">
-                                {Icon && 
-                                    <Icon size={50} className='self-center p-3 bg-accent rounded-full' />
-                                }
-                                <CardHeader className='text-center tracking-wide space-y-2'>
-                                    <CardTitle className="font-semibold text-xs lg:text-sm uppercase">{feature.name}</CardTitle>
-                                    <CardDescription>{feature.desc}</CardDescription>
-                                </CardHeader>
-                            </Card>
-                        </div>
+                        <Card key={feature.id} className="h-full p-10 md:p-6 lg:p-10 space-y-4">
+                            {Icon && 
+                                <Icon size={50} className='self-center p-3 bg-accent rounded-full' />
+                            }
+                            <CardHeader className='text-center tracking-wide space-y-2'>
+                                <CardTitle className="font-semibold text-xs lg:text-sm uppercase">{feature.name}</CardTitle>
+                                <CardDescription>{feature.desc}</CardDescription>
+                            </CardHeader>
+                        </Card>
                     )
                 })}
             </div>
