@@ -37,6 +37,10 @@ function App() {
 		}
 	}
 
+	const handleClear = () => {
+		setCity('');
+	}
+
 	const handleInputChange = (e) => {
 		setCity(e.target.value);
 	}
@@ -48,10 +52,6 @@ function App() {
 			const limitedHistory = [cityToWrite, ...filteredHistory].slice(0, 5);
 			return limitedHistory;
 		});
-	}
-
-	const handleX = () => {
-		setCity('');
 	}
 
 	useEffect(() => {
@@ -106,7 +106,7 @@ function App() {
 					onCityChange={handleInputChange} 
 					onSearch={handleSearch}
 					history={history}
-					onXClick={handleX}
+					onClear={handleClear}
 				/>
 			}
 
@@ -116,7 +116,7 @@ function App() {
 					onCityChange={handleInputChange} 
 					onSearch={handleSearch}
 					history={history}
-					onXClick={handleX}
+					onClear={handleClear}
 				/>
 			}
 
