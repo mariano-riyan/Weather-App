@@ -10,7 +10,7 @@ const WeatherElements = ({weather, unit}) => {
             "value": weather?.main?.humidity,
             "unit": '%',
             "icon": Droplets,
-            "span": '2'
+            "className": 'col-span-2'
         },
         "wind": {
             "id": 1,
@@ -20,7 +20,7 @@ const WeatherElements = ({weather, unit}) => {
         },
         "clouds": {
             "id": 4,
-            "value": weather?.clouds.all,
+            "value": weather?.clouds?.all,
             "unit": '%',
             "icon": Cloudy,
         },
@@ -45,7 +45,7 @@ const WeatherElements = ({weather, unit}) => {
                 const Icon = value.icon;
 
                 return (
-                    <Card key={value.id} className={`col-span-${value.span || 0}`}>
+                    <Card key={value.id} className={value.className}>
                         <CardHeader className="space-y-4">
                             <CardTitle className="uppercase font-semibold flex gap-2 md:flex-row-reverse md:justify-between text-xs">
                                 <Icon size={15} className="inline-block mr-2" />
