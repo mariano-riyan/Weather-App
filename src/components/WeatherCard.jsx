@@ -3,7 +3,7 @@ import WeatherElements from "./WeatherElements";
 function WeatherCard({ weather, tempUnit }) {
 
     const unit = tempUnit === 'imperial' ? 'F' : 'C';
-    const windUnit = tempUnit === 'imperial' ? 'mph' : 'km/h';
+    const windUnit = tempUnit === 'imperial' ? 'mph' : 'm/s';
     const name = weather?.name ?? '';
     const country = weather?.sys?.country ?? '';
     const speed = weather?.wind?.speed;
