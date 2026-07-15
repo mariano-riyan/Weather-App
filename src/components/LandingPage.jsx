@@ -4,7 +4,7 @@ import {
     CardDescription,
     CardHeader,
     CardTitle,
-} from "./ui/card"
+} from "./ui/Card";
 
 import { getFeaturesData } from '../services/featuresService';
 import { ClockCheck, MapPinSearch, Thermometer } from 'lucide-react';
@@ -20,13 +20,11 @@ const LandingPage = ({ value, onCityChange, onSearch, history, onClear }) => {
     }
 
     return (
-        <div className='space-y-8'>
-            <div className='space-y-2 text-center mt-16'>
-                <h1 className='text-6xl font-bold'>Weather</h1>
-                <p className='text-sm'>Beautifully minimal weather data, engineered for the modern web.</p>
-            </div>
+        <div className='space-y-16'>
+            <div className='space-y-8 text-center mt-16'>
+                <h1 className='text-5xl lg:text-6xl xl:text-7xl font-bold'>Weather</h1>
+                <p className='text-sm xl:text-base tracking-wide'>Beautifully minimal weather data, engineered for the modern web.</p>
 
-            <div className=''>
                 <SearchBar 
                     value={value}
                     onCityChange={onCityChange}
@@ -36,18 +34,17 @@ const LandingPage = ({ value, onCityChange, onSearch, history, onClear }) => {
                 />
             </div>
 
-            <div className='flex flex-col gap-4'>
+            <div className="grid md:grid-cols-3 gap-8">
                 {features.map(feature => {
                     const Icon = icons[feature.icon];
 
                     return (
-                        <Card key={feature.id}>
+                        <Card key={feature.id} className="h-full p-10 md:p-6 lg:p-10 space-y-4">
                             {Icon && 
-                                <Icon size={50} className='shrink-0 self-center p-3 bg-accent rounded-full' />
+                                <Icon size={50} className='self-center p-3 bg-accent rounded-full' />
                             }
-
-                            <CardHeader className='text-center'>
-                                <CardTitle>{feature.name}</CardTitle>
+                            <CardHeader className='text-center tracking-wide space-y-2'>
+                                <CardTitle className="font-semibold text-xs lg:text-sm uppercase">{feature.name}</CardTitle>
                                 <CardDescription>{feature.desc}</CardDescription>
                             </CardHeader>
                         </Card>
