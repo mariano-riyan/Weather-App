@@ -23,5 +23,5 @@ XWeather provides a distraction-free, high-performance interface that distills c
 **Mitigation:** Implement robust error handling to display a user-friendly message if the service is unreachable, rather than showing a broken page.
 * **Data Accuracy:** Discrepancies may occur between different weather providers. 
 **Mitigation:** Clearly cite the data provider within the application to manage user expectations.
-***Scope Creep:** The tendency to add "nice-to-have" features that could compromise the minimalist vision. 
+* **Scope Creep:** The tendency to add "nice-to-have" features that could compromise the minimalist vision. 
 **Mitigation:** Adhere strictly to the features defined in the REQUIREMENTS.md document and evaluate new ideas against the core vision.
