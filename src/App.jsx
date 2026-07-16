@@ -8,6 +8,7 @@ import ForecastList from "./components/ForecastList";
 import UnitToggle from "./components/UnitToggle";
 import { useWeather } from "./context/WeatherContext";
 import LandingPage from "./components/LandingPage";
+import HourlyForecastList from "#components/HourlyForecastList";
 
 function App() {
 
@@ -132,9 +133,12 @@ function App() {
 				<WeatherCard weather={weatherData} tempUnit={unit} />
 			}
 
-			{forecastData && (
-				<ForecastList forecasts={forecastData.list}/>
-			)}
+			{forecastData && 
+				<div>
+					<ForecastList forecasts={forecastData.list}/>
+					<HourlyForecastList forecasts={forecastData.list} />
+				</div>
+			}
 			
 		</div>
 	)

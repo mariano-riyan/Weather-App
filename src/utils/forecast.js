@@ -11,6 +11,31 @@ export function getDailyForecasts(forecasts) {
     })
 }
 
+export function getHourlyForecasts(forecasts) {
+    const times = new Set();
+
+    return forecasts.filter(forecast => {
+        const time = forecast.dt_txt.split(' ')[1];
+
+        if (times.has(time) ) {
+            return;
+        }
+
+        return times.add(time);
+    })
+}
+
+export function formatTime(date) {
+    const safeDate = typeof date === 'string' ? date.replace(/-/g, '/') : date;
+    const time = new Date(safeDate).toLocaleTimeString('en-US', {
+        hour: 'numeric',
+        minute: '2-digit',
+        hour12: true
+    });
+
+    return time;
+}
+
 export function formatWeekday(date) {
 
     const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
