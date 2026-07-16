@@ -26,7 +26,8 @@ export function getHourlyForecasts(forecasts) {
 }
 
 export function formatTime(date) {
-    const time = new Date(date).toLocaleTimeString('en-US', {
+    const safeDate = typeof date === 'string' ? date.replace(/-/g, '/') : date;
+    const time = new Date(safeDate).toLocaleTimeString('en-US', {
         hour: 'numeric',
         minute: '2-digit',
         hour12: true
