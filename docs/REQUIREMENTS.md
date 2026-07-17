@@ -11,6 +11,11 @@
 
 - [ ] `[FR-05]` **Error Handling:** The application shall display a user-friendly error message if a city is not found or if the API service is unavailable.
 
+- [X] `[FR-06]` **Search History:** The application shall display the search history when the search bar is clicked.
+
+- [ ] `[FR-07]` **Theme Toggle:** The application shall provide a UI element that allow users to toggle the theme *(Light & Dark)*.
+
+
 
 ## 2. Non-Functional Requirements
 - `[NFR-01]` **Performance:** The application should load the initial dashboard in under 1.5 seconds under a standard 4G/LTE network connection.
