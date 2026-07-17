@@ -9,6 +9,7 @@ import UnitToggle from "./components/UnitToggle";
 import { useWeather } from "./context/WeatherContext";
 import LandingPage from "./components/LandingPage";
 import HourlyForecastList from "#components/HourlyForecastList";
+import { getCachedWeather, setCachedWeather } from "./services/cacheService";
 
 function App() {
 
@@ -61,12 +62,23 @@ function App() {
 
 	const handleSearch = async (searchCity, overrideUnit) => {
 		const cityToSearch = searchCity ?? city;
-		if (!cityToSearch.trim()) {
-			setError("Please Enter a City");
+		const effectiveUnit = overrideUnit ?? unit;
+
+		if (!cityToSearch.trim()) return;
+
+		const cacheKey = `weather_${cityToSearch}_${effectiveUnit}`;
+		const cached = getCachedWeather(cacheKey);
+
+		if (cached) {
+			setWeatherData(cached.data.weather);
+			setForecastData(cached.data.forecast);
+			setLastSearchedCity(cityToSearch);
+
+			setCity('');
+			writeHistory(cityToSearch);
+			setError(null);
 			return;
 		}
-
-		const effectiveUnit = overrideUnit ?? unit;
 
 		setIsLoading(true);
 		setError(null);
@@ -80,15 +92,16 @@ function App() {
 			setWeatherData(weather);
 			setForecastData(forecast);
 			setLastSearchedCity(cityToSearch);
+
+			setCachedWeather(cacheKey, weather, forecast);
 			setCity('');
-			writeHistory(cityToSearch)
+			writeHistory(cityToSearch);
 		} catch (error) {
 			setError(error.message);
 			setWeatherData(null);
 			setForecastData(null);
 		} finally {
 			setIsLoading(false);
-			
 		}
 	}
 
