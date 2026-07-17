@@ -17,7 +17,7 @@
 
     * **Request:** User submits a city name.
 
-    * **Cache Check:** The application checks `localStorage` for cached data for that specific city (within a valid timeframe, e.g., 30 minutes).
+    * **Cache Check:** The application checks `sessionStorage` for cached data for that specific city (within a valid timeframe, e.g., 30 minutes).
 
     * **API Fetch** (if necessary): If no cache exists, a GET request is sent to the OpenWeatherMap API.
 

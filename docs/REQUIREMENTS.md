@@ -1,13 +1,13 @@
 # Functional & Non-Functional Requirements
 
 ## 1. Functional Requirements (Features)
-- [ ] `[FR-01]` **City Search:** The application shall provide a search bar allowing users to enter a city name to retrieve weather data.
+- [X] `[FR-01]` **City Search:** The application shall provide a search bar allowing users to enter a city name to retrieve weather data.
 
-- [ ] `[FR-02]` **Current Weather Display:** The application shall display the current temperature, weather conditions *(e.g., Sunny, Rainy)*, and key meteorological elements *(wind speed, humidity, clouds, rain precipitation, visibility)*.
+- [X] `[FR-02]` **Current Weather Display:** The application shall display the current temperature, weather conditions *(e.g., Sunny, Rainy)*, and key meteorological elements *(wind speed, humidity, clouds, rain precipitation, visibility)*.
 
-- [ ] `[FR-03]` **5-Day Forecast:** The application shall provide a 5-day weather forecast, showing the expected temperature range and conditions for each day.
+- [X] `[FR-03]` **5-Day Forecast:** The application shall provide a 5-day weather forecast, showing the expected temperature range and conditions for each day.
 
-- [ ] `[FR-04]` **Unit Toggle:** The application shall provide a UI element to allow users to toggle between Celsius (°C) and Fahrenheit (°F) units, with the choice persisting during the session.
+- [X] `[FR-04]` **Unit Toggle:** The application shall provide a UI element to allow users to toggle between Celsius (°C) and Fahrenheit (°F) units, with the choice persisting during the session.
 
 - [ ] `[FR-05]` **Error Handling:** The application shall display a user-friendly error message if a city is not found or if the API service is unavailable.
 
