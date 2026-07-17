@@ -7,11 +7,11 @@
 
 * **API Service:** OpenWeatherMap API
 
-8 **Storage:** Browser LocalStorage
+* **Storage:** Browser LocalStorage
 
 
 ## 2. Data Flow
-* **API Integration:** The application interacts with the OpenWeatherMap API using `fetch` within React `useEffect` hooks. All requests will be structured to handle loading, success, and error states.
+* **API Integration:** The application interacts with the OpenWeatherMap API using `fetch`. All requests will be structured to handle loading, success, and error states.
 
 * **Data Lifecycle:**
 
@@ -23,7 +23,7 @@
 
     * **State Update:** The response is stored in React state for immediate UI rendering and simultaneously saved to `localStorage` for future use.
 
-* **Security:** As a client-side application, the API key is passed via request headers or parameters.
+* **Security:** API key is stored in .env.
 
 
 ## 3. Component Structure
