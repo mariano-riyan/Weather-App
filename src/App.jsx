@@ -75,6 +75,8 @@ function App() {
 			setLastSearchedCity(cityToSearch);
 
 			setCity('');
+			writeHistory(cityToSearch);
+			setError(null);
 			return;
 		}
 
@@ -93,7 +95,7 @@ function App() {
 
 			setCachedWeather(cacheKey, weather, forecast);
 			setCity('');
-			writeHistory(cityToSearch)
+			writeHistory(cityToSearch);
 		} catch (error) {
 			setError(error.message);
 			setWeatherData(null);

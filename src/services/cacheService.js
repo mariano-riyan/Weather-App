@@ -32,7 +32,11 @@ export const setCachedWeather = (cacheKey, weather, forecast) => {
         }
     }
 
-    sessionStorage.setItem(cacheKey, JSON.stringify(cacheEntry))
+    try {
+        sessionStorage.setItem(cacheKey, JSON.stringify(cacheEntry));
+    } catch (error) {
+        console.error("Failed to cache weather data:", error);
+    }
 
     return;
 }
