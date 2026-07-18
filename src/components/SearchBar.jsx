@@ -9,22 +9,27 @@ import {
     InputGroupAddon,
     InputGroupInput,
 } from "./ui/input-group"
+import { useWeather } from "../context/WeatherContext";
 
-function SearchBar({ value, onCityChange, onSearch, history, onClear }) {
+function SearchBar() {
 
+    const { handleSearch, history } = useWeather();
+    const [inputValue, setInputValue] = useState('');
     const [showHistory, setShowHistory] = useState('opacity-0');
 
     const handleHistoryClick = (e) => {
-        onCityChange(e);
-        onSearch(e.target.value);
+        handleSearch(e.target.value);
     }
     
     return ( 
         <form   
             onSubmit={(e) => {
                 e.preventDefault();
-                onSearch();
-                document.activeElement?.blur();
+                if (inputValue.trim()) {
+                    handleSearch(inputValue);
+                    setInputValue('');
+                    document.activeElement?.blur();
+                }             
             }}
             className="max-w-sm mx-auto h-auto"
         >
@@ -34,9 +39,11 @@ function SearchBar({ value, onCityChange, onSearch, history, onClear }) {
                         placeholder="Search city..."
                         autoComplete="off"
                         aria-label="City"
-                        value={value}
+                        value={inputValue}
                         style={{ textTransform: 'capitalize' }}
-                        onChange={onCityChange}
+                        onChange={(e) => {
+                            setInputValue(e.target.value);
+                        }}
                         onFocus={() => {setShowHistory('opacity-100 cursor-pointer')}}
                         onBlur={() => {setShowHistory('opacity-0 cursor-default')}}
                         className="md:text-md tracking-wide"
@@ -44,21 +51,19 @@ function SearchBar({ value, onCityChange, onSearch, history, onClear }) {
                     <InputGroupAddon>
                         <Search />
                     </InputGroupAddon>
-                    {value && 
-                        <InputGroupAddon align="inline-end">
-                            <button
-                                type="button"
-                                aria-label="Clear City"
-                                className="mx-1 text-muted-foreground hover:text-foreground"
-                                onClick={() => {
-                                    onClear();
-                                    setShowHistory('opacity-0 cursor-default')
-                                }}
-                            >
-                                <X size={20}/>
-                            </button>
-                        </InputGroupAddon>
-                    }
+                    <InputGroupAddon align="inline-end">
+                        <button
+                            type="button"
+                            aria-label="Clear City"
+                            className={`${showHistory} mx-1 text-muted-foreground hover:text-foreground`}
+                            onClick={() => {
+                                setInputValue('');
+                                setShowHistory('opacity-0 cursor-default')
+                            }}
+                        >
+                            <X size={20}/>
+                        </button>
+                    </InputGroupAddon>
                 </InputGroup>
             </Field>
 
