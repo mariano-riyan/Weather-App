@@ -1,15 +1,10 @@
 import SearchBar from './SearchBar';
-import {
-    Card,
-    CardDescription,
-    CardHeader,
-    CardTitle,
-} from "./ui/Card";
+import { Card, CardDescription, CardHeader, CardTitle, } from "./ui/Card";
 
-import { getFeaturesData } from '../services/featuresService';
 import { ClockCheck, MapPinSearch, Thermometer } from 'lucide-react';
+import { getFeaturesData } from '../services/featuresService';
 
-const LandingPage = ({ value, onCityChange, onSearch, history, onClear }) => {
+const LandingPage = () => {
 
     const features = getFeaturesData().Features;
 
@@ -25,13 +20,7 @@ const LandingPage = ({ value, onCityChange, onSearch, history, onClear }) => {
                 <h1 className='text-5xl lg:text-6xl xl:text-7xl font-bold'>Weather</h1>
                 <p className='text-sm xl:text-base tracking-wide'>Beautifully minimal weather data, engineered for the modern web.</p>
 
-                <SearchBar 
-                    value={value}
-                    onCityChange={onCityChange}
-                    onSearch={onSearch}
-                    history={history}
-                    onClear={onClear}
-                />
+                <SearchBar />
             </div>
 
             <div className="grid md:grid-cols-3 gap-8">
