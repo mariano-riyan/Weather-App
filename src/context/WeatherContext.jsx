@@ -13,25 +13,32 @@ export const WeatherProvider = ({ children }) => {
 	const [error, setError] = useState(null);
 	const [history, setHistory] = useState(() => {
 		try {
-			return JSON.parse(localStorage.getItem('history')) || []
+			const storedHistory = JSON.parse(localStorage.getItem('history'));
+			return Array.isArray(storedHistory) ? storedHistory : [];
 		} catch {
 			return [];
 		}
 	});
 	const [lastSearchedCity, setLastSearchedCity] = useState(null);
 
-	const handleUnit = () => {
+	const handleUnit = async () => {
 		const newUnit = unit === 'metric' ? 'imperial' : 'metric';
-		toggleUnit(newUnit);
 		if (weatherData) {
-			handleSearch(lastSearchedCity, newUnit).catch(() => {
-				toggleUnit(unit)
-			});
+			const success = await handleSearch(lastSearchedCity, newUnit);
+			if (success) {
+				toggleUnit(newUnit);
+			}
+		} else {
+			toggleUnit(newUnit);
 		}
 	}
 
 	useEffect(() => {
-		localStorage.setItem('history', JSON.stringify(history));
+		try {
+			localStorage.setItem('history', JSON.stringify(history));
+		} catch (error) {
+			console.error('Local Storage is not available: ', error);
+		}
 	}, [history]);
 
 	const writeHistory = (cityToWrite) => {
@@ -48,7 +55,7 @@ export const WeatherProvider = ({ children }) => {
 
 	const handleSearch = async (searchCity, overrideUnit) => {
 
-		if (!searchCity.trim() || !unit.trim()) return;
+		if (!searchCity || !searchCity.trim() || !unit.trim()) return false;
 
 		const effectiveUnit = overrideUnit ?? unit;
 
@@ -62,7 +69,7 @@ export const WeatherProvider = ({ children }) => {
 
 			writeHistory(searchCity);
 			setError(null);
-			return;
+			return true;
 		}
 
 		setIsLoading(true);
@@ -80,10 +87,12 @@ export const WeatherProvider = ({ children }) => {
 
 			setCachedWeather(cacheKey, weather, forecast);
 			writeHistory(searchCity);
+			return true;
 		} catch (error) {
 			setError(error.message);
 			setWeatherData(null);
 			setForecastData(null);
+			return false;
 		} finally {
 			setIsLoading(false);
 		}

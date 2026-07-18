@@ -44,25 +44,27 @@ function SearchBar() {
                         onChange={(e) => {
                             setInputValue(e.target.value);
                         }}
-                        onFocus={() => {setShowHistory('opacity-100 cursor-pointer')}}
-                        onBlur={() => {setShowHistory('opacity-0 cursor-default')}}
+                        onFocus={() => {setShowHistory('opacity-100')}}
+                        onBlur={() => {setShowHistory('opacity-0')}}
                         className="md:text-md tracking-wide"
                     />
                     <InputGroupAddon>
                         <Search />
                     </InputGroupAddon>
                     <InputGroupAddon align="inline-end">
-                        <button
-                            type="button"
-                            aria-label="Clear City"
-                            className={`${showHistory} mx-1 text-muted-foreground hover:text-foreground`}
-                            onClick={() => {
-                                setInputValue('');
-                                setShowHistory('opacity-0 cursor-default')
-                            }}
-                        >
-                            <X size={20}/>
-                        </button>
+                        {inputValue && (
+                            <button
+                                type="button"
+                                aria-label="Clear City"
+                                className={`${showHistory} cursor-pointer mx-1 text-muted-foreground hover:text-foreground`}
+                                onClick={() => {
+                                    setInputValue('');
+                                    setShowHistory('opacity-0')
+                                }}
+                            >
+                                <X size={20}/>
+                            </button>
+                        )}
                     </InputGroupAddon>
                 </InputGroup>
             </Field>

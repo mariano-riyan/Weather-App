@@ -26,7 +26,9 @@ function App() {
 				<LandingPage />
 			}
 
+			{weatherData &&
 				<SearchBar />
+			}
 
 			{isLoading && 
 				<p>Loading...</p>
