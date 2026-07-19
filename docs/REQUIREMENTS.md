@@ -9,11 +9,11 @@
 
 - [X] `[FR-04]` **Unit Toggle:** The application shall provide a UI element to allow users to toggle between Celsius (°C) and Fahrenheit (°F) units, with the choice persisting during the session.
 
-- [ ] `[FR-05]` **Error Handling:** The application shall display a user-friendly error message if a city is not found or if the API service is unavailable.
+- [X] `[FR-05]` **Error Handling:** The application shall display a user-friendly error message if a city is not found or if the API service is unavailable.
 
 - [X] `[FR-06]` **Search History:** The application shall display the search history when the search bar is clicked.
 
-- [ ] `[FR-07]` **Theme Toggle:** The application shall provide a UI element that allow users to toggle the theme *(Light & Dark)*.
+- [X] `[FR-07]` **Theme Toggle:** The application shall provide a UI element that allow users to toggle the theme *(Light & Dark)*.
 
 
 
