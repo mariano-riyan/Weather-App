@@ -1,4 +1,4 @@
-import useWeatherLogic from "#hooks/useWeatherLogic";
+import { useWeatherLogic } from "../hooks/useWeatherLogic";
 import { createContext, useContext } from "react";
 
 const WeatherContext = createContext(null);
