@@ -11,7 +11,9 @@ export const useWeatherLogic = () => {
 	const [history, setHistory] = useState(() => {
 		try {
 			const storedHistory = JSON.parse(localStorage.getItem('history'));
-			return Array.isArray(storedHistory) ? storedHistory : [];
+			return Array.isArray(storedHistory)
+			? storedHistory.filter(item => typeof item === 'string').slice(0, 5) 
+			: [];
 		} catch {
 			return [];
 		}
@@ -60,8 +62,8 @@ export const useWeatherLogic = () => {
 		const cached = getCachedWeather(cacheKey);
 
 		if (cached) {
-			setWeatherData(cached.data.weather);
-			setForecastData(cached.data.forecast);
+			setWeatherData(cached?.data?.weather);
+			setForecastData(cached?.data?.forecast);
 			setLastSearchedCity(searchCity);
 
 			writeHistory(searchCity);
