@@ -1,11 +1,8 @@
 import { useState } from 'react';
 import { getCachedWeather, setCachedWeather } from '../services/cacheService';
 import { fetchForecastData, fetchWeatherData } from '../services/weatherApi';
-import { useHistory } from './useHistory';
 
-export const useWeatherSearch = () => {
-
-    const { writeHistory } = useHistory();
+export const useWeatherSearch = (writeHistory) => {
 	
 	const [unit, setUnit] = useState('metric');
     const [weatherData, setWeatherData] = useState(null);

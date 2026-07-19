@@ -3,8 +3,8 @@ import { useWeatherSearch } from "./useWeatherSearch";
 
 export const useWeatherLogic = () => {
     
-	const search = useWeatherSearch();
-	const history = useHistory();
+	const { writeHistory, ...history } = useHistory();
+	const search = useWeatherSearch(writeHistory);
 	
     return { ...search, ...history };
 }
