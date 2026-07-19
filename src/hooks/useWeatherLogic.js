@@ -1,102 +1,10 @@
-import { useState, useEffect } from 'react';
-import { fetchForecastData, fetchWeatherData } from '../services/weatherApi';
-import { getCachedWeather, setCachedWeather } from '../services/cacheService';
+import { useHistory } from "./useHistory";
+import { useWeatherSearch } from "./useWeatherSearch";
 
 export const useWeatherLogic = () => {
-    const [unit, setUnit] = useState('metric');
-	const [weatherData, setWeatherData] = useState(null);
-	const [forecastData, setForecastData] = useState(null);
-	const [isLoading, setIsLoading] = useState(false);
-	const [error, setError] = useState(null);
-	const [history, setHistory] = useState(() => {
-		try {
-			const storedHistory = JSON.parse(localStorage.getItem('history'));
-			return Array.isArray(storedHistory)
-			? storedHistory.filter(item => typeof item === 'string').slice(0, 5) 
-			: [];
-		} catch {
-			return [];
-		}
-	});
-	const [lastSearchedCity, setLastSearchedCity] = useState(null);
-
-	const handleUnit = async () => {
-		const newUnit = unit === 'metric' ? 'imperial' : 'metric';
-		if (weatherData) {
-			const success = await handleSearch(lastSearchedCity, newUnit);
-			if (success) {
-				toggleUnit(newUnit);
-			}
-		} else {
-			toggleUnit(newUnit);
-		}
-	}
-
-	useEffect(() => {
-		try {
-			localStorage.setItem('history', JSON.stringify(history));
-		} catch (error) {
-			console.error('Local Storage is not available: ', error);
-		}
-	}, [history]);
-
-	const writeHistory = (cityToWrite) => {
-		setHistory(prevHistory => {
-			const filteredHistory = prevHistory.filter(data => data.toLowerCase().trim() !== cityToWrite.toLowerCase().trim());
-			const limitedHistory = [cityToWrite, ...filteredHistory].slice(0, 5);
-			return limitedHistory;
-		});
-	}
-
-    const toggleUnit = (newUnit) => {
-        setUnit(newUnit);
-    }
-
-	const handleSearch = async (searchCity, overrideUnit) => {
-
-		if (!searchCity || !searchCity.trim() || !unit.trim()) return false;
-
-		const effectiveUnit = overrideUnit ?? unit;
-
-		const cacheKey = `weather_${searchCity}_${effectiveUnit}`;
-		const cached = getCachedWeather(cacheKey);
-
-		if (cached) {
-			setWeatherData(cached?.data?.weather);
-			setForecastData(cached?.data?.forecast);
-			setLastSearchedCity(searchCity);
-
-			writeHistory(searchCity);
-			setError(null);
-			return true;
-		}
-
-		setIsLoading(true);
-		setError(null);
-
-		try {
-			const [weather, forecast] = await Promise.all([
-				fetchWeatherData(searchCity, effectiveUnit),
-				fetchForecastData(searchCity, effectiveUnit)
-			]);
-			
-			setWeatherData(weather);
-			setForecastData(forecast);
-			setLastSearchedCity(searchCity);
-
-			setCachedWeather(cacheKey, weather, forecast);
-			writeHistory(searchCity);
-			return true;
-		} catch (error) {
-			setError(error.message);
-			setWeatherData(null);
-			setForecastData(null);
-			return false;
-		} finally {
-			setIsLoading(false);
-		}
-	}
-    return { unit, weatherData, forecastData, isLoading, error, history, handleSearch, handleUnit };
+    
+	const { writeHistory, ...history } = useHistory();
+	const search = useWeatherSearch(writeHistory);
+	
+    return { ...search, ...history };
 }
- 
-export default useWeatherLogic;
