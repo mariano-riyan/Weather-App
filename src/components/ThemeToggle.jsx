@@ -8,12 +8,13 @@ const ThemeToggle = () => {
     return (
         <Button
             onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}
+            className="rounded-full"
         >
             {theme === "light"
                 ?
-                <Sun />
+                <Sun aria-label="Light Mode" />
                 :
-                <Moon />
+                <Moon aria-label="Dark Mode" />
             }
         </Button>
     );
