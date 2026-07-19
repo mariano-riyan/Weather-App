@@ -5,6 +5,7 @@ import UnitToggle from "./components/UnitToggle";
 import { useWeather } from "./context/WeatherContext";
 import LandingPage from "./components/LandingPage";
 import HourlyForecastList from "#components/HourlyForecastList";
+import ThemeToggle from "#components/ThemeToggle";
 
 function App() {
 
@@ -18,7 +19,7 @@ function App() {
 	return (
 		<div className="p-4 md:p-8">
 
-			
+			<ThemeToggle />
 			<UnitToggle />
 
 			{!weatherData &&
