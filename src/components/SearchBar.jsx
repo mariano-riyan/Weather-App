@@ -2,18 +2,18 @@ import { useState } from "react";
 
 import { Search, X } from "lucide-react";
 
+import { useWeather } from "../context/WeatherContext";
 import SearchHistory from "./SearchHistory";
-import { Field } from "./ui/field"
+import { Field } from "./ui/field";
 import {
     InputGroup,
     InputGroupAddon,
     InputGroupInput,
-} from "./ui/input-group"
-import { useWeather } from "../context/WeatherContext";
+} from "./ui/input-group";
 
 function SearchBar() {
 
-    const { handleSearch, history } = useWeather();
+    const { handleSearch, history, error } = useWeather();
     const [inputValue, setInputValue] = useState('');
     const [showHistory, setShowHistory] = useState('opacity-0');
 
@@ -35,19 +35,37 @@ function SearchBar() {
         >
             <Field>
                 <InputGroup className="h-9">
-                    <InputGroupInput 
-                        placeholder="Search city..."
-                        autoComplete="off"
-                        aria-label="City"
-                        value={inputValue}
-                        style={{ textTransform: 'capitalize' }}
-                        onChange={(e) => {
-                            setInputValue(e.target.value);
-                        }}
-                        onFocus={() => {setShowHistory('opacity-100')}}
-                        onBlur={() => {setShowHistory('opacity-0')}}
-                        className="md:text-md tracking-wide"
-                    />
+                    {error
+                        ?
+                        <InputGroupInput
+                            placeholder="City not found"
+                            autoComplete="off"
+                            aria-label="City"
+                            aria-invalid
+                            value={inputValue}
+                            style={{ textTransform: 'capitalize' }}
+                            onChange={(e) => {
+                                setInputValue(e.target.value);
+                            }}
+                            onFocus={() => {setShowHistory('opacity-100')}}
+                            onBlur={() => {setShowHistory('opacity-0')}}
+                            className="md:text-md tracking-wide"
+                        />
+                        :
+                        <InputGroupInput 
+                            placeholder="Search city..."
+                            autoComplete="off"
+                            aria-label="City"
+                            value={inputValue}
+                            style={{ textTransform: 'capitalize' }}
+                            onChange={(e) => {
+                                setInputValue(e.target.value);
+                            }}
+                            onFocus={() => {setShowHistory('opacity-100')}}
+                            onBlur={() => {setShowHistory('opacity-0')}}
+                            className="md:text-md tracking-wide"
+                        />
+                    }
                     <InputGroupAddon>
                         <Search />
                     </InputGroupAddon>

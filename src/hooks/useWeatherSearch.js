@@ -65,8 +65,6 @@ export const useWeatherSearch = (writeHistory) => {
 			return true;
 		} catch (error) {
 			setError(error.message);
-			setWeatherData(null);
-			setForecastData(null);
 			return false;
 		} finally {
 			setIsLoading(false);

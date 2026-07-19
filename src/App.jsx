@@ -13,7 +13,6 @@ function App() {
 			weatherData,
 			forecastData,
 			isLoading,
-			error
 		} = useWeather();
 
 	return (
@@ -32,10 +31,6 @@ function App() {
 
 			{isLoading && 
 				<p>Loading...</p>
-			}
-
-			{error && 
-				<p>{error}</p>
 			}
 
 			{weatherData &&
