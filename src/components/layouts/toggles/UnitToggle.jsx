@@ -8,8 +8,9 @@ const UnitToggle = () => {
 
     return (
         <Button
+            size="md"
             variant="secondary"
-            className="px-4 py-2 w-24 gap-4 flex justify-around cursor-pointer relative place-items-center"
+            className="px-4 py-2 h-fit w-24 gap-4 flex justify-around cursor-pointer relative place-items-center"
             onClick={handleUnit}
             aria-label="Toggle temperature unit"
         >
@@ -21,7 +22,7 @@ const UnitToggle = () => {
                 °F
             </div>
 
-            <span className={`absolute bg-primary h-[80%] w-[40%] rounded-full ${unit === 'metric' ? 'left-3' : 'translate-x-5'} duration-300 ease-in-out shadow-sm`}></span>
+            <span className={`absolute bg-primary h-[80%] w-[40%] rounded-full ${unit === 'metric' ? 'left-2.5' : 'translate-x-5.5'} duration-300 ease-initial shadow-sm`}></span>
         </Button>
     );
 }

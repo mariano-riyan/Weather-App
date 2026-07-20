@@ -1,4 +1,4 @@
-import { ButtonGroup } from "#components/ui/button-group";
+import { ButtonGroup } from "@/components/ui/button-group";
 import ThemeToggle from "./ThemeToggle";
 import UnitToggle from "./UnitToggle";
 

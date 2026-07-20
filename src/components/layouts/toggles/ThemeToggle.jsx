@@ -7,6 +7,8 @@ const ThemeToggle = () => {
     const { theme, setTheme } = useTheme();
     return (
         <Button
+            size="md"
+            className="w-10"
             onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}
             variant="secondary"
         >
