@@ -31,7 +31,7 @@ function SearchBar() {
                     document.activeElement?.blur();
                 }             
             }}
-            className="max-w-sm mx-auto h-auto"
+            className="max-w-sm mx-auto h-auto space-y-2"
         >
             <Field>
                 <InputGroup className="h-9">
