@@ -1,11 +1,10 @@
 import WeatherCard from "./components/WeatherCard";
 import SearchBar from "./components/SearchBar";
 import ForecastList from "./components/ForecastList";
-import UnitToggle from "./components/UnitToggle";
 import { useWeather } from "./context/WeatherContext";
 import LandingPage from "./components/LandingPage";
 import HourlyForecastList from "#components/HourlyForecastList";
-import ThemeToggle from "#components/ThemeToggle";
+import ToggleLayout from "./components/layouts/toggles/index";
 
 function App() {
 
@@ -19,8 +18,7 @@ function App() {
 	return (
 		<div className="p-4 md:p-8">
 
-			<ThemeToggle />
-			<UnitToggle />
+			<ToggleLayout />
 
 			{!weatherData &&
 				<LandingPage />
