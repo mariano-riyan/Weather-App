@@ -1,4 +1,4 @@
-import { getDailyForecasts } from "../utils/forecast";
+import { getDailyForecasts } from "@/utils/forecast";
 
 import ForecastItem from "./ForecastItem";
 

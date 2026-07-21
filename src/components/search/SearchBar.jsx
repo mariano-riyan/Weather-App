@@ -2,14 +2,14 @@ import { useState } from "react";
 
 import { Search, X } from "lucide-react";
 
-import { useWeather } from "../context/WeatherContext";
-import SearchHistory from "./SearchHistory";
-import { Field } from "./ui/field";
+import { Field } from "@/components/ui/field";
+import { useWeather } from "@/context/WeatherContext";
 import {
     InputGroup,
     InputGroupAddon,
     InputGroupInput,
-} from "./ui/input-group";
+} from "../ui/input-group";
+import SearchHistory from "./SearchHistory";
 
 function SearchBar() {
 

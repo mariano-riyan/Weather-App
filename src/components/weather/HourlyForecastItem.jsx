@@ -1,6 +1,6 @@
-import { formatWeekday } from "../utils/forecast";
+import { formatTime } from "@/utils/forecast";
 
-function ForecastItem({ forecast }) {
+const HourlyforecastItem = ({ forecast }) => {
 
     const temp = forecast?.main?.temp?.toFixed() ?? '';
     const feelsLike = forecast?.main?.feels_like?.toFixed() ?? '';
@@ -13,7 +13,7 @@ function ForecastItem({ forecast }) {
         <div className="p-4 md:p-6 xl:p-8 bg-foreground/10 backdrop-blur-xl rounded-xl border border-white/20 md:min-w-50 text-center place-items-center min-w-40">  
 
             <span className="font-bold">
-                {formatWeekday(forecast.dt_txt)}
+                {formatTime(forecast.dt_txt)}
             </span>
 
             <img
@@ -29,5 +29,5 @@ function ForecastItem({ forecast }) {
         </div>
     );
 }
-
-export default ForecastItem;
+ 
+export default HourlyforecastItem;

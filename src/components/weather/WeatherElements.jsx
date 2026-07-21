@@ -1,5 +1,5 @@
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "./ui/Card";
-import { Progress } from "./ui/progress"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/Card";
+import { Progress } from "@/components/ui/progress"
 import { Wind, Droplets, Eye, CloudHail, Cloudy } from "lucide-react";
 
 const WeatherElements = ({weather, unit}) => {
