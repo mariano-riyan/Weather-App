@@ -2,14 +2,14 @@ import { useState } from "react";
 
 import { Search, X } from "lucide-react";
 
-import { useWeather } from "../context/WeatherContext";
-import SearchHistory from "./SearchHistory";
-import { Field } from "./ui/field";
+import { Field } from "@/components/ui/field";
+import { useWeather } from "@/context/WeatherContext";
 import {
     InputGroup,
     InputGroupAddon,
     InputGroupInput,
-} from "./ui/input-group";
+} from "../ui/input-group";
+import SearchHistory from "./SearchHistory";
 
 function SearchBar() {
 
@@ -38,17 +38,15 @@ function SearchBar() {
                     {error
                         ?
                         <InputGroupInput
-                            placeholder="City not found"
+                            placeholder={error ? "City not found" : "Search city..."}
                             autoComplete="off"
                             aria-label="City"
-                            aria-invalid
+                            aria-invalid={error ? true : undefined}
                             value={inputValue}
                             style={{ textTransform: 'capitalize' }}
-                            onChange={(e) => {
-                                setInputValue(e.target.value);
-                            }}
-                            onFocus={() => {setShowHistory('opacity-100')}}
-                            onBlur={() => {setShowHistory('opacity-0')}}
+                            onChange={(e) => setInputValue(e.target.value)}
+                            onFocus={() => setShowHistory('opacity-100')}
+                            onBlur={() => setShowHistory('opacity-0')}
                             className="md:text-md tracking-wide"
                         />
                         :

@@ -11,16 +11,15 @@ const ThemeToggle = () => {
             className="w-10"
             onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}
             variant="secondary"
+            aria-label={theme === 'light' ? 'Switch to dark mode' : 'Switch to light mode'}
         >
             {theme === "light"
                 ?
                 <Sun
-                    aria-label="Light Mode"
                     size={20}
                 />
                 :
                 <Moon
-                    aria-label="Dark Mode" 
                     size={20}
                 />
             }

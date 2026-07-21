@@ -1,4 +1,4 @@
-import { getHourlyForecasts } from "../utils/forecast";
+import { getHourlyForecasts } from "@/utils/forecast";
 import HourlyForecastItem from "./HourlyForecastItem";
 
 const HourlyForecastList = ({ forecasts }) => {

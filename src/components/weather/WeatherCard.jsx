@@ -11,7 +11,7 @@ function WeatherCard({ weather, tempUnit }) {
     const temp = weather?.main?.temp;
     const feelsLike = weather?.main?.feels_like;
 
-    const iconUrl = `https://openweathermap.org/img/wn/${icon}@2x.png`;
+    const iconUrl = icon ? `https://openweathermap.org/img/wn/${icon}@2x.png` : '';
 
     return ( 
         <div className="my-4 flex gap-4 flex-col md:flex-row items-center">
