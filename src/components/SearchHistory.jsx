@@ -1,10 +1,9 @@
 const SearchHistory = ({ history, onCityClick, visibility }) => {
 
     return ( 
-        <div className={`${visibility} absolute bg-secondary/20 backdrop-blur-md border-2 rounded-2xl w-sm overflow-hidden duration-300`}>
+        <div className={`${visibility} absolute bg-secondary/20 backdrop-blur-md border-2 rounded-2xl w-sm overflow-hidden transition-opacity duration-300`}>
             {history.map(city => (
                 <button 
-                    variant="ghost"
                     type="button"
                     key={city} 
                     value={city}
