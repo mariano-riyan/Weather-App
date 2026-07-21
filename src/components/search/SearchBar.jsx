@@ -57,10 +57,10 @@ function SearchBar() {
                             <button
                                 type="button"
                                 aria-label="Clear City"
-                                className={`${showHistory} cursor-pointer mx-1 text-muted-foreground hover:text-foreground`}
+                                className="cursor-pointer mx-1 text-muted-foreground hover:text-foreground"
                                 onClick={() => {
                                     setInputValue('');
-                                    setShowHistory('opacity-0 pointer-events-none')
+                                    setShowHistory(false)
                                 }}
                             >
                                 <X size={20}/>
