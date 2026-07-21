@@ -3,7 +3,7 @@ const SearchHistory = ({ history, onCityClick, visibility }) => {
     if (!history || history.length === 0) return null;
 
     return ( 
-        <div className={`${visibility} absolute bg-secondary/20 backdrop-blur-md border-2 rounded-2xl w-sm overflow-hidden transition-opacity duration-300`}>
+        <div className={`${visibility} absolute backdrop-blur-sm border-2 rounded-2xl w-full overflow-hidden transition-opacity duration-300`}>
             {history.map(city => (
                 <button 
                     type="button"

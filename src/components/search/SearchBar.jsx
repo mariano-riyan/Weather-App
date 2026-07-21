@@ -31,42 +31,27 @@ function SearchBar() {
                     document.activeElement?.blur();
                 }             
             }}
-            className="max-w-sm mx-auto h-auto space-y-2"
+            className="max-w-sm place-self-center md:min-w-sm relative gap-2"
         >
             <Field>
                 <InputGroup className="h-9">
-                    {error
-                        ?
-                        <InputGroupInput
-                            placeholder={error ? "City not found" : "Search city..."}
-                            autoComplete="off"
-                            aria-label="City"
-                            aria-invalid={error ? true : undefined}
-                            value={inputValue}
-                            style={{ textTransform: 'capitalize' }}
-                            onChange={(e) => setInputValue(e.target.value)}
-                            onFocus={() => setShowHistory('opacity-100')}
-                            onBlur={() => setShowHistory('opacity-0')}
-                            className="md:text-md tracking-wide"
-                        />
-                        :
-                        <InputGroupInput 
-                            placeholder="Search city..."
-                            autoComplete="off"
-                            aria-label="City"
-                            value={inputValue}
-                            style={{ textTransform: 'capitalize' }}
-                            onChange={(e) => {
-                                setInputValue(e.target.value);
-                            }}
-                            onFocus={() => {setShowHistory('opacity-100')}}
-                            onBlur={() => {setShowHistory('opacity-0')}}
-                            className="md:text-md tracking-wide"
-                        />
-                    }
+                    <InputGroupInput
+                        placeholder={error ? "City not found" : "Search city..."}
+                        autoComplete="off"
+                        aria-label="City"
+                        aria-invalid={error ? true : undefined}
+                        value={inputValue}
+                        style={{ textTransform: 'capitalize' }}
+                        onChange={(e) => setInputValue(e.target.value)}
+                        onFocus={() => setShowHistory('opacity-100')}
+                        onBlur={() => setShowHistory('opacity-0')}
+                        className="md:text-md tracking-wide"
+                    />
+
                     <InputGroupAddon>
                         <Search />
                     </InputGroupAddon>
+
                     <InputGroupAddon align="inline-end">
                         {inputValue && (
                             <button
@@ -82,6 +67,7 @@ function SearchBar() {
                             </button>
                         )}
                     </InputGroupAddon>
+
                 </InputGroup>
             </Field>
 

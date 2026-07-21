@@ -7,21 +7,17 @@ const ThemeToggle = () => {
     const { theme, setTheme } = useTheme();
     return (
         <Button
-            size="md"
-            className="w-10"
+            size="base"
+            className="w-10 cursor-pointer"
             onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}
             variant="secondary"
             aria-label={theme === 'light' ? 'Switch to dark mode' : 'Switch to light mode'}
         >
             {theme === "light"
                 ?
-                <Sun
-                    size={20}
-                />
+                <Sun />
                 :
-                <Moon
-                    size={20}
-                />
+                <Moon />
             }
         </Button>
     );
