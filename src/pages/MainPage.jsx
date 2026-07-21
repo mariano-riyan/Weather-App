@@ -1,11 +1,11 @@
-import ToggleLayout from "@/components/toggles/index";
+
 import EmptyState from "@/components/empty-state/EmptyState";
-import SearchBar from "@/components/search/SearchBar";
 import WeatherCard from "@/components/weather/WeatherCard";
 import ForecastList from "@/components/weather/ForecastList";
 import HourlyForecastList from "@/components/weather/HourlyForecastList";
 
 import { useWeather } from "@/context/WeatherContext";
+import Header from "@/components/layout/Header";
 
 const MainPage = () => {
 
@@ -17,16 +17,12 @@ const MainPage = () => {
 	} = useWeather();
 
     return (
-        <div className="p-4 md:p-8">
+        <div className="px-4 md:px-8">
 
-			<ToggleLayout />
+			<Header searchVisibility={weatherData} />
 
 			{!weatherData &&
 				<EmptyState />
-			}
-
-			{weatherData &&
-				<SearchBar />
 			}
 
 			{isLoading && 

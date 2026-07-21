@@ -8,9 +8,8 @@ const UnitToggle = () => {
 
     return (
         <Button
-            size="md"
             variant="secondary"
-            className="px-4 py-2 h-fit w-24 gap-4 flex justify-around cursor-pointer relative place-items-center"
+            className="px-4 py-2 h-full w-24 gap-4 flex justify-around cursor-pointer relative"
             onClick={handleUnit}
             aria-label="Toggle temperature unit"
         >
