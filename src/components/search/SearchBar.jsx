@@ -15,7 +15,7 @@ function SearchBar() {
 
     const { handleSearch, history, error } = useWeather();
     const [inputValue, setInputValue] = useState('');
-    const [showHistory, setShowHistory] = useState('opacity-0');
+    const [showHistory, setShowHistory] = useState(false);
 
     const handleHistoryClick = (e) => {
         handleSearch(e.target.value);
@@ -43,8 +43,8 @@ function SearchBar() {
                         value={inputValue}
                         style={{ textTransform: 'capitalize' }}
                         onChange={(e) => setInputValue(e.target.value)}
-                        onFocus={() => setShowHistory('opacity-100')}
-                        onBlur={() => setShowHistory('opacity-0')}
+                        onFocus={() => setShowHistory(true)}
+                        onBlur={() => setShowHistory(false)}
                         className="md:text-md tracking-wide"
                     />
 
@@ -60,7 +60,7 @@ function SearchBar() {
                                 className={`${showHistory} cursor-pointer mx-1 text-muted-foreground hover:text-foreground`}
                                 onClick={() => {
                                     setInputValue('');
-                                    setShowHistory('opacity-0')
+                                    setShowHistory('opacity-0 pointer-events-none')
                                 }}
                             >
                                 <X size={20}/>
@@ -71,11 +71,12 @@ function SearchBar() {
                 </InputGroup>
             </Field>
 
-            <SearchHistory 
-                history={history} 
-                onCityClick={handleHistoryClick} 
-                visibility={showHistory}
-            />
+            {showHistory && (
+                <SearchHistory 
+                    history={history} 
+                    onCityClick={handleHistoryClick}
+                />
+            )}
         </form>
     );
 }
