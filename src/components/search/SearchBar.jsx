@@ -13,7 +13,7 @@ import SearchHistory from "./SearchHistory";
 
 function SearchBar() {
 
-    const { handleSearch, history, error } = useWeather();
+    const { handleSearch, history, error, clearHistory, removeHistory } = useWeather();
     const [inputValue, setInputValue] = useState('');
     const [showHistory, setShowHistory] = useState(false);
 
@@ -75,6 +75,8 @@ function SearchBar() {
                 <SearchHistory 
                     history={history} 
                     onCityClick={handleHistoryClick}
+                    onClearHistory={clearHistory}
+                    onRemoveHistory={removeHistory}
                 />
             )}
         </form>
