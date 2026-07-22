@@ -30,6 +30,16 @@ export const useHistory = () => {
 		});
 	}
 
-    return { history, writeHistory };
+    const clearHistory = () => {
+        setHistory([]);
+    }
+
+    const removeHistory = (cityToRemove) => {
+        setHistory(prevHistory => 
+            prevHistory.filter(data => data.toLowerCase().trim() !== cityToRemove.toLowerCase().trim())
+        )
+    }
+
+    return { history, writeHistory, clearHistory, removeHistory };
 }
  
