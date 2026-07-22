@@ -1,6 +1,6 @@
 import WeatherElements from "./WeatherElements";
 
-function WeatherCard({ weather, tempUnit }) {
+function WeatherCard({ weather, tempUnit, onLoading }) {
 
     const unit = tempUnit === 'imperial' ? 'F' : 'C';
     const windUnit = tempUnit === 'imperial' ? 'mph' : 'm/s';
@@ -8,10 +8,10 @@ function WeatherCard({ weather, tempUnit }) {
     const country = weather?.sys?.country ?? '';
     const icon = weather?.weather?.[0]?.icon;
     const description = weather?.weather?.[0]?.description ?? '';
-    const temp = weather?.main?.temp;
-    const feelsLike = weather?.main?.feels_like;
+    const temp = weather?.main?.temp.toFixed();
+    const feelsLike = weather?.main?.feels_like.toFixed();
 
-    const iconUrl = icon ? `https://openweathermap.org/img/wn/${icon}@2x.png` : '';
+    const iconUrl = icon ? `https://openweathermap.org/img/wn/${icon}@2x.png` : null;
 
     return ( 
         <div className="my-4 flex gap-4 flex-col md:flex-row items-center">
@@ -26,8 +26,8 @@ function WeatherCard({ weather, tempUnit }) {
                     />
 
                     <div className="text-center space-y-1 md:text-start">
-                        <p className="text-7xl">{temp.toFixed()}°{unit}</p>
-                        <p className="text-sm">Feels like {feelsLike.toFixed()}°{unit}</p>
+                        <p className="text-7xl">{temp}°{unit}</p>
+                        <p className="text-sm">Feels like {feelsLike}°{unit}</p>
                         <p className="text-lg capitalize">{description}</p>
                     </div>
                 </div>
@@ -36,6 +36,7 @@ function WeatherCard({ weather, tempUnit }) {
             <WeatherElements 
                 weather={weather}
                 unit={windUnit}
+                onLoading={onLoading}
             />
         </div>
     );

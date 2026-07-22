@@ -14,6 +14,7 @@ const MainPage = () => {
 		weatherData,
 		forecastData,
 		isLoading,
+		isPending
 	} = useWeather();
 
     return (
@@ -25,12 +26,9 @@ const MainPage = () => {
 				<EmptyState />
 			}
 
-			{isLoading && 
-				<p>Loading...</p>
-			}
-
-			{weatherData &&
-				<WeatherCard weather={weatherData} tempUnit={unit} />
+			{isPending || weatherData ?
+				<WeatherCard weather={weatherData} tempUnit={unit} onLoading={isLoading} />
+				: <WeatherCard weather={weatherData} tempUnit={unit} onLoading={isLoading} />
 			}
 
 			{forecastData && 
