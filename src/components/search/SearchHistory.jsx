@@ -23,6 +23,7 @@ const SearchHistory = ({ history, onCityClick, onClearHistory, onRemoveHistory }
                     <button 
                         type="button" 
                         value={city}
+                        aria-label={`Search ${city}`}
                         onMouseDown={(e) => e.preventDefault()}
                         onClick={onCityClick}
                         className="capitalize flex gap-2 py-1.5 hover:bg-accent w-full text-start px-4 place-items-center"
@@ -34,6 +35,7 @@ const SearchHistory = ({ history, onCityClick, onClearHistory, onRemoveHistory }
                     <button
                         variant='ghost'
                         type='button'
+                        aria-label={`Remove ${city} from search history`}
                         onMouseDown={(e) => e.preventDefault()}
                         onClick={() => onRemoveHistory(city)}
                         className='lg:hidden md:group-hover:block absolute right-2 cursor-pointer'
