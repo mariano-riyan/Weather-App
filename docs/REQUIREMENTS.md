@@ -15,6 +15,10 @@
 
 - [X] `[FR-07]` **Theme Toggle:** The application shall provide a UI element that allow users to toggle the theme *(Light & Dark)*.
 
+- [ ] `[FR-08]` **Geolocation:** Automatically detect local weather based on user location.
+
+- [ ] `[FR-09]` **Personalization:** Save favorite cities for quick access.
+
 
 
 ## 2. Non-Functional Requirements
