@@ -1,10 +1,8 @@
 import { Skeleton } from "#components/ui/skeleton";
-import WeatherElements from "./WeatherElements";
 
 function WeatherCard({ weather, tempUnit, onLoading }) {
 
     const unit = tempUnit === 'imperial' ? 'F' : 'C';
-    const windUnit = tempUnit === 'imperial' ? 'mph' : 'm/s';
     const name = weather?.name ?? '';
     const country = weather?.sys?.country ?? '';
     const icon = weather?.weather?.[0]?.icon;
@@ -52,12 +50,6 @@ function WeatherCard({ weather, tempUnit, onLoading }) {
                     </div>
                 </div>
             }
-
-            <WeatherElements 
-                weather={weather}
-                unit={windUnit}
-                onLoading={onLoading}
-            />
         </div>
     );
 }
