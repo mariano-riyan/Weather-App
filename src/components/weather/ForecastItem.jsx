@@ -5,10 +5,10 @@ import { formatWeekday } from "@/utils/forecast";
 function ForecastItem({ forecast, onLoading }) {
 
     const temp = forecast?.main?.temp?.toFixed() ?? '';
-    const icon = forecast?.weather[0]?.icon;
-    const desc = forecast?.weather[0]?.description ?? 'Weather Icon'
+    const icon = forecast?.weather?.[0].icon;
+    const desc = forecast?.weather?.[0].description ?? 'Weather Icon'
 
-    const iconUrl = `https://openweathermap.org/img/wn/${icon}@2x.png`;
+    const iconUrl = icon ? `https://openweathermap.org/img/wn/${icon}@2x.png` : null;
 
     return (     
         onLoading
@@ -26,7 +26,7 @@ function ForecastItem({ forecast, onLoading }) {
             : (
             <Card className="min-w-fit grow rounded-xl">
                 <CardTitle className="text-center font-bold opacity-50 text-xs lg:text-sm">
-                    {formatWeekday(forecast.dt_txt)}
+                    {formatWeekday(forecast?.dt_txt)}
                 </CardTitle>
 
                 <CardContent className="place-self-center">
