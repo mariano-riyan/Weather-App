@@ -13,7 +13,7 @@ function WeatherCard({ weather, tempUnit, onLoading }) {
     const iconUrl = icon ? `https://openweathermap.org/img/wn/${icon}@2x.png` : null;
 
     return ( 
-        <div className="my-4 md:my-0 flex gap-4 flex-col md:flex-row items-center">
+        <div className="mt-4 md:mt-0 flex gap-4 flex-col md:flex-row items-center">
             {onLoading
                 ?
                 <div className="flex-1 min-h-[50vh] grid place-items-center md:justify-start">
