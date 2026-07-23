@@ -1,24 +1,17 @@
 
 import EmptyState from "@/components/empty-state/EmptyState";
-import WeatherCard from "@/components/weather/WeatherCard";
-import ForecastList from "@/components/weather/ForecastList";
-import HourlyForecastList from "@/components/weather/HourlyForecastList";
+
 
 import { useWeather } from "@/context/WeatherContext";
 import Header from "@/components/layout/Header";
+import WeatherContents from "@/components/layout/WeatherContents";
 
 const MainPage = () => {
 
-    const {
-		unit,
-		weatherData,
-		forecastData,
-		isLoading,
-		isPending
-	} = useWeather();
+    const { weatherData } = useWeather();
 
     return (
-        <div className="px-4 md:px-8">
+        <div className="px-4 md:px-8 mb-4">
 
 			<Header searchVisibility={weatherData} />
 
@@ -26,16 +19,7 @@ const MainPage = () => {
 				<EmptyState />
 			}
 
-			{(isPending || weatherData) &&
-				<WeatherCard weather={weatherData} tempUnit={unit} onLoading={isLoading} />
-			}
-
-			{( isPending || forecastData) && 
-				<div>
-					<ForecastList forecasts={forecastData?.list} onLoading={isLoading}/>
-					<HourlyForecastList forecasts={forecastData?.list} onLoading={isLoading} />
-				</div>
-			}
+			<WeatherContents />
 			
 		</div>
     );

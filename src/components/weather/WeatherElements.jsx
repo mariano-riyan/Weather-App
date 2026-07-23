@@ -5,18 +5,13 @@ import { Wind, Droplets, Eye, CloudHail, Cloudy } from "lucide-react";
 
 const WeatherElements = ({ weather, unit, onLoading }) => {
 
+    const windUnit = unit === 'imperial' ? 'mph' : 'm/s';
+
     const elements = {
-        "humidity": {
-            "id": 2,
-            "value": weather?.main?.humidity,
-            "unit": '%',
-            "icon": Droplets,
-            "className": 'col-span-2'
-        },
         "wind": {
             "id": 1,
             "value": weather?.wind?.speed,
-            "unit": unit,
+            "unit": windUnit,
             "icon": Wind,
         },
         "clouds": {
@@ -36,11 +31,18 @@ const WeatherElements = ({ weather, unit, onLoading }) => {
             "value": weather?.rain?.['1h'] || 0,
             "unit": 'mm/h',
             "icon": CloudHail,
+        },
+        "humidity": {
+            "id": 2,
+            "value": weather?.main?.humidity,
+            "unit": '%',
+            "icon": Droplets,
+            "className": 'col-span-2'
         }
     }
 
     return (
-        <div className="grid grid-cols-2 gap-5 min-w-xs lg:w-80 xl:w-110">
+        <div className="grid grid-cols-2 gap-5 md:grid-cols-3 w-full lg:flex flex-col-reverse lg:max-w-sm justify-self-center">
             {Object.entries(elements).map(([key, value]) => {
 
                 const Icon = value.icon;
