@@ -2,7 +2,7 @@ import { getDailyForecasts } from "@/utils/forecast";
 
 import ForecastItem from "./ForecastItem";
 
-const ForecastList = ({ forecasts }) => {
+const ForecastList = ({ forecasts, onLoading }) => {
 
     if (!forecasts?.length) return null;
 
@@ -19,6 +19,7 @@ const ForecastList = ({ forecasts }) => {
                             <ForecastItem 
                                 key={forecast.dt} 
                                 forecast={forecast}
+                                onLoading={onLoading}
                             />
                     )
                 )}

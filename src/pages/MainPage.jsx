@@ -26,15 +26,14 @@ const MainPage = () => {
 				<EmptyState />
 			}
 
-			{isPending || weatherData ?
+			{(isPending || weatherData) &&
 				<WeatherCard weather={weatherData} tempUnit={unit} onLoading={isLoading} />
-				: <WeatherCard weather={weatherData} tempUnit={unit} onLoading={isLoading} />
 			}
 
-			{forecastData && 
+			{( isPending || forecastData) && 
 				<div>
-					<ForecastList forecasts={forecastData.list}/>
-					<HourlyForecastList forecasts={forecastData.list} />
+					<ForecastList forecasts={forecastData?.list} onLoading={isLoading}/>
+					<HourlyForecastList forecasts={forecastData?.list} onLoading={isLoading} />
 				</div>
 			}
 			

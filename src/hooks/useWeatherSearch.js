@@ -69,7 +69,8 @@ export const useWeatherSearch = (writeHistory) => {
 			setError(error.message);
 			return false;
 		} finally {
-			setTimeout(() => setIsLoading(false), 2000);
+			setIsPending(false);
+			setTimeout(() => setIsLoading(true), 800);
 		}
 	}
 
