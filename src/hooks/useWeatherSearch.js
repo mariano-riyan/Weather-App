@@ -10,6 +10,7 @@ export const useWeatherSearch = (writeHistory) => {
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState(null);
     const [lastSearchedCity, setLastSearchedCity] = useState(null);
+	const [isPending, setIsPending] = useState(false);
 
 
     const toggleUnit = (newUnit) => {
@@ -47,6 +48,7 @@ export const useWeatherSearch = (writeHistory) => {
 			return true;
 		}
 
+		setIsPending(true);
 		setIsLoading(true);
 		setError(null);
 
@@ -67,9 +69,10 @@ export const useWeatherSearch = (writeHistory) => {
 			setError(error.message);
 			return false;
 		} finally {
-			setIsLoading(false);
+			setIsPending(false);
+			setTimeout(() => setIsLoading(false), 800);
 		}
 	}
 
-    return{ unit, weatherData, forecastData, isLoading, error, lastSearchedCity, handleUnit, handleSearch };
+    return{ unit, weatherData, forecastData, isLoading, error, lastSearchedCity, isPending, handleUnit, handleSearch };
 }
