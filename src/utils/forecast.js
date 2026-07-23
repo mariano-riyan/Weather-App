@@ -32,7 +32,7 @@ export function formatTime(date) {
     const time = new Date(safeDate).toLocaleTimeString('en-US', {
         hour: 'numeric',
         minute: '2-digit',
-        hour12: true
+        hour12: false
     });
 
     return time;

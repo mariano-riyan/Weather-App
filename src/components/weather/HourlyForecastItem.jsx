@@ -1,32 +1,33 @@
 import { formatTime } from "@/utils/forecast";
+import { Card, CardContent, CardTitle } from "@/components/ui/Card"
 
 const HourlyforecastItem = ({ forecast }) => {
 
     const temp = forecast?.main?.temp?.toFixed() ?? '';
-    const feelsLike = forecast?.main?.feels_like?.toFixed() ?? '';
     const icon = forecast?.weather[0]?.icon;
     const desc = forecast?.weather[0]?.description ?? 'Weather Icon'
 
     const iconUrl = `https://openweathermap.org/img/wn/${icon}@2x.png`;
 
     return ( 
-        <div className="p-4 md:p-6 xl:p-8 bg-foreground/10 backdrop-blur-xl rounded-xl border border-white/20 md:min-w-50 text-center place-items-center min-w-40">  
+        <Card className="min-w-fit grow rounded-xl">  
 
-            <span className="font-bold">
+            <CardTitle className="text-center font-bold opacity-50 text-xs lg:text-sm">
                 {formatTime(forecast.dt_txt)}
-            </span>
+            </CardTitle>
 
-            <img
-                src={iconUrl} 
-                alt={desc}
-                className=""
-            />
+            <CardContent className="place-self-center">
+                <img
+                    src={iconUrl} 
+                    alt={desc}
+                    className="w-8 lg:w-10"
+                />
+            </CardContent>
 
-            <div className="flex flex-col">
-                <span className="text-sm font-bold">{temp}° / {feelsLike}°</span>
-                <span></span>
-            </div>
-        </div>
+            <CardContent>
+                <p className="font-bold text-center text-base lg:text-lg">{temp}°</p>
+            </CardContent>    
+        </Card>
     );
 }
  
