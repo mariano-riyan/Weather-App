@@ -70,7 +70,7 @@ export const useWeatherSearch = (writeHistory) => {
 			return false;
 		} finally {
 			setIsPending(false);
-			setTimeout(() => setIsLoading(true), 800);
+			setTimeout(() => setIsLoading(false), 800);
 		}
 	}
 
