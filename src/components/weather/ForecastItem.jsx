@@ -13,15 +13,13 @@ function ForecastItem({ forecast, onLoading }) {
     return (     
         onLoading
             ? (
-            <div className="space-y-2 p-4 md:p-6 xl:p-8 bg-foreground/10 backdrop-blur-xl rounded-xl border border-white/20 md:min-w-50 text-center place-items-center min-w-40">  
-                <Skeleton className="w-20 h-6" />
+            <Card className="min-w-18 grow rounded-xl">
+                <Skeleton className="w-10 h-5 mx-auto" />
 
-                <Skeleton className="h-20 w-20" />
-                
-                <div className="flex flex-col">
-                    <Skeleton className="text-sm font-bold w-20 h-6" />
-                </div>
-            </div>
+                <Skeleton className="place-self-center h-10 w-10" />
+
+                <Skeleton className="w-9 h-6 mx-auto" />    
+            </Card>
             )
             : (
             <Card className="min-w-fit grow rounded-xl">
